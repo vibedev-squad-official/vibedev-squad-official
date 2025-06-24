@@ -1,17 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
-
-// Initialize Supabase client for staging with service role key
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+import { getSupabase } from '../../../../lib/supabase';
 
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const projectId = searchParams.get('project_id');
 
+    const supabase = getSupabase();
     let query = supabase
       .from('agents')
       .select(`
@@ -41,23 +36,32 @@ export async function GET(request: NextRequest) {
     if (error) {
       console.error('Error fetching agents:', error);
       return NextResponse.json(
-        { error: 'Failed to fetch agents' },
+        { 
+          error: 'Failed to fetch agents',
+          details: error.message,
+          environment: process.env.NODE_ENV || 'development'
+        },
         { status: 500 }
       );
     }
 
     return NextResponse.json({
-      agents: agents || [],
+      success: true,
+      data: agents || [],
       count: agents?.length || 0,
       timestamp: new Date().toISOString(),
-      environment: 'staging',
+      environment: process.env.NODE_ENV || 'development',
       filters: { project_id: projectId }
     });
 
   } catch (error) {
     console.error('Agents API error:', error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { 
+        error: 'Internal server error',
+        details: error instanceof Error ? error.message : 'Unknown error',
+        environment: process.env.NODE_ENV || 'development'
+      },
       { status: 500 }
     );
   }
@@ -85,6 +89,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const supabase = getSupabase();
     const { data: agent, error } = await supabase
       .from('agents')
       .insert({
@@ -114,21 +119,31 @@ export async function POST(request: NextRequest) {
     if (error) {
       console.error('Error creating agent:', error);
       return NextResponse.json(
-        { error: 'Failed to create agent' },
+        { 
+          error: 'Failed to create agent',
+          details: error.message,
+          environment: process.env.NODE_ENV || 'development'
+        },
         { status: 500 }
       );
     }
 
     return NextResponse.json({
-      agent,
+      success: true,
+      data: agent,
       message: 'Agent created successfully',
-      environment: 'staging'
+      environment: process.env.NODE_ENV || 'development',
+      timestamp: new Date().toISOString()
     }, { status: 201 });
 
   } catch (error) {
     console.error('Create agent API error:', error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { 
+        error: 'Internal server error',
+        details: error instanceof Error ? error.message : 'Unknown error',
+        environment: process.env.NODE_ENV || 'development'
+      },
       { status: 500 }
     );
   }

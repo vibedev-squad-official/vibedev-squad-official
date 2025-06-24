@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '../../../../lib/supabase';
+import { getSupabase } from '../../../../lib/supabase';
 
 export async function GET() {
   try {
     // Test the database connection by fetching projects
+    const supabase = getSupabase();
     const { data: projects, error } = await supabase
       .from('projects')
       .select(`
@@ -26,7 +27,7 @@ export async function GET() {
         { 
           error: 'Database connection failed', 
           details: error.message,
-          environment: process.env.NODE_ENV 
+          environment: process.env.NODE_ENV || 'development'
         },
         { status: 500 }
       );
@@ -34,11 +35,11 @@ export async function GET() {
 
     return NextResponse.json({
       success: true,
-      environment: process.env.NODE_ENV,
-      supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
-      projectCount: projects?.length || 0,
-      projects: projects || [],
-      timestamp: new Date().toISOString()
+      data: projects,
+      count: projects?.length || 0,
+      environment: process.env.NODE_ENV || 'development',
+      timestamp: new Date().toISOString(),
+      database: 'connected'
     });
   } catch (error) {
     console.error('API error:', error);
@@ -46,7 +47,7 @@ export async function GET() {
       { 
         error: 'Internal server error', 
         details: error instanceof Error ? error.message : 'Unknown error',
-        environment: process.env.NODE_ENV 
+        environment: process.env.NODE_ENV || 'development'
       },
       { status: 500 }
     );
@@ -56,25 +57,25 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, description } = body;
+    const { name, description, owner_id } = body;
 
-    if (!name) {
+    if (!name || !owner_id) {
       return NextResponse.json(
-        { error: 'Project name is required' },
+        { error: 'Missing required fields: name, owner_id' },
         { status: 400 }
       );
     }
 
-    // For staging, we'll use a dummy user ID
-    const dummyUserId = '00000000-0000-0000-0000-000000000000';
-
+    const supabase = getSupabase();
     const { data: project, error } = await supabase
       .from('projects')
-      .insert({
-        name,
-        description: description || null,
-        owner_id: dummyUserId
-      })
+      .insert([
+        {
+          name,
+          description: description || null,
+          owner_id
+        }
+      ])
       .select()
       .single();
 
@@ -84,7 +85,7 @@ export async function POST(request: NextRequest) {
         { 
           error: 'Failed to create project', 
           details: error.message,
-          environment: process.env.NODE_ENV 
+          environment: process.env.NODE_ENV || 'development'
         },
         { status: 500 }
       );
@@ -92,8 +93,8 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      project,
-      environment: process.env.NODE_ENV,
+      data: project,
+      environment: process.env.NODE_ENV || 'development',
       timestamp: new Date().toISOString()
     }, { status: 201 });
   } catch (error) {
@@ -102,7 +103,7 @@ export async function POST(request: NextRequest) {
       { 
         error: 'Internal server error', 
         details: error instanceof Error ? error.message : 'Unknown error',
-        environment: process.env.NODE_ENV 
+        environment: process.env.NODE_ENV || 'development'
       },
       { status: 500 }
     );
