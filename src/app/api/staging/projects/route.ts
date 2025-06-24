@@ -1,50 +1,53 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '../../../../lib/supabase';
 
-// Initialize Supabase client for staging with service role key
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
-
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
+    // Test the database connection by fetching projects
     const { data: projects, error } = await supabase
       .from('projects')
       .select(`
         id,
         name,
         description,
-        owner_id,
         created_at,
-        updated_at,
+        owner_id,
         users!projects_owner_id_fkey (
           id,
           email,
           display_name
         )
       `)
-      .order('created_at', { ascending: false });
+      .limit(10);
 
     if (error) {
-      console.error('Error fetching projects:', error);
+      console.error('Database error:', error);
       return NextResponse.json(
-        { error: 'Failed to fetch projects' },
+        { 
+          error: 'Database connection failed', 
+          details: error.message,
+          environment: process.env.NODE_ENV 
+        },
         { status: 500 }
       );
     }
 
     return NextResponse.json({
+      success: true,
+      environment: process.env.NODE_ENV,
+      supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
+      projectCount: projects?.length || 0,
       projects: projects || [],
-      count: projects?.length || 0,
-      timestamp: new Date().toISOString(),
-      environment: 'staging'
+      timestamp: new Date().toISOString()
     });
-
   } catch (error) {
-    console.error('Projects API error:', error);
+    console.error('API error:', error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { 
+        error: 'Internal server error', 
+        details: error instanceof Error ? error.message : 'Unknown error',
+        environment: process.env.NODE_ENV 
+      },
       { status: 500 }
     );
   }
@@ -53,56 +56,54 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, description, owner_id } = body;
+    const { name, description } = body;
 
-    // Validate required fields
-    if (!name || !owner_id) {
+    if (!name) {
       return NextResponse.json(
-        { error: 'Name and owner_id are required' },
+        { error: 'Project name is required' },
         { status: 400 }
       );
     }
+
+    // For staging, we'll use a dummy user ID
+    const dummyUserId = '00000000-0000-0000-0000-000000000000';
 
     const { data: project, error } = await supabase
       .from('projects')
       .insert({
         name,
-        description,
-        owner_id
+        description: description || null,
+        owner_id: dummyUserId
       })
-      .select(`
-        id,
-        name,
-        description,
-        owner_id,
-        created_at,
-        updated_at,
-        users!projects_owner_id_fkey (
-          id,
-          email,
-          display_name
-        )
-      `)
+      .select()
       .single();
 
     if (error) {
-      console.error('Error creating project:', error);
+      console.error('Database error:', error);
       return NextResponse.json(
-        { error: 'Failed to create project' },
+        { 
+          error: 'Failed to create project', 
+          details: error.message,
+          environment: process.env.NODE_ENV 
+        },
         { status: 500 }
       );
     }
 
     return NextResponse.json({
+      success: true,
       project,
-      message: 'Project created successfully',
-      environment: 'staging'
+      environment: process.env.NODE_ENV,
+      timestamp: new Date().toISOString()
     }, { status: 201 });
-
   } catch (error) {
-    console.error('Create project API error:', error);
+    console.error('API error:', error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { 
+        error: 'Internal server error', 
+        details: error instanceof Error ? error.message : 'Unknown error',
+        environment: process.env.NODE_ENV 
+      },
       { status: 500 }
     );
   }
