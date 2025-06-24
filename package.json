@@ -19,7 +19,7 @@
     "@radix-ui/react-toast": "^1.2.14",
     "@sentry/mcp-server": "^0.12.0",
     "@sentry/nextjs": "^9.30.0",
-    "@supabase/supabase-js": "^2.50.0",
+    "@supabase/supabase-js": "^2.50.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.522.0",
