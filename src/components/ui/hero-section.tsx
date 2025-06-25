@@ -78,7 +78,7 @@ const AgentFlow: React.FC = () => {
       role: 'Quality Assurance',
       icon: <CheckCircle className="w-6 h-6" />,
       color: '#96CEB4',
-      position: { x: 35, y: 55 }
+      position: { x: 30, y: 55 }
     },
     {
       id: 'security',
@@ -86,7 +86,7 @@ const AgentFlow: React.FC = () => {
       role: 'Security Expert',
       icon: <Shield className="w-6 h-6" />,
       color: '#FFEAA7',
-      position: { x: 65, y: 55 }
+      position: { x: 60, y: 55 }
     },
     {
       id: 'devops',
@@ -94,7 +94,7 @@ const AgentFlow: React.FC = () => {
       role: 'Deployment Specialist',
       icon: <Cog className="w-6 h-6" />,
       color: '#FF6B6B',
-      position: { x: 50, y: 80 }
+      position: { x: 45, y: 80 }
     }
   ]
 
@@ -235,16 +235,15 @@ const AgentFlow: React.FC = () => {
             {/* Tooltip */}
             {hoveredAgent === agent.id && (
               <motion.div
-                className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 px-3 py-2 bg-black/90 backdrop-blur-sm rounded-lg border border-white/20 text-white text-sm whitespace-nowrap z-50 pointer-events-none"
-                initial={{ opacity: 0, y: 10, scale: 0.8 }}
+                className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-black/80 backdrop-blur-sm rounded text-white text-xs whitespace-nowrap z-50 pointer-events-none"
+                initial={{ opacity: 0, y: 5, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 10, scale: 0.8 }}
-                transition={{ duration: 0.2 }}
+                exit={{ opacity: 0, y: 5, scale: 0.9 }}
+                transition={{ duration: 0.15 }}
               >
-                <div className="font-semibold">{agent.name}</div>
-                <div className="text-xs text-gray-300">{agent.role}</div>
+                {agent.name}
                 <div 
-                  className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-black/90"
+                  className="absolute top-full left-1/2 transform -translate-x-1/2 border-2 border-transparent border-t-black/80"
                 />
               </motion.div>
             )}
