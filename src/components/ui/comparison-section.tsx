@@ -47,11 +47,9 @@ export function ComparisonSection({ className }: ComparisonSectionProps) {
             )}
 
             {activeTab === "dev-costs" && (
-              <div className="p-8 rounded-2xl backdrop-blur-xl border border-white/10">
-                <h3 className="text-xl font-semibold text-white mb-4">Dev Team Costs</h3>
-                <p className="text-gray-300">
-                  Cost breakdown table content will be implemented in Subtask 4.4
-                </p>
+              <div className="space-y-12">
+                <CostBreakdownTable />
+                <CostComparisonCards />
               </div>
             )}
 
