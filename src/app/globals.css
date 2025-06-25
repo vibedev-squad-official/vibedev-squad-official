@@ -120,3 +120,25 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes background-gradient {
+  0% {
+    transform: translate(var(--tx-1), var(--ty-1));
+  }
+  25% {
+    transform: translate(var(--tx-2), var(--ty-2));
+  }
+  50% {
+    transform: translate(var(--tx-3), var(--ty-3));
+  }
+  75% {
+    transform: translate(var(--tx-4), var(--ty-4));
+  }
+  100% {
+    transform: translate(var(--tx-1), var(--ty-1));
+  }
+}
+
+.animate-background-gradient {
+  animation: background-gradient var(--background-gradient-speed, 10s) infinite ease-in-out;
+}

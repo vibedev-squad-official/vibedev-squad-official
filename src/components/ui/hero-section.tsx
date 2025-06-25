@@ -3,7 +3,7 @@
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { motion, useAnimation, useInView } from 'framer-motion'
-import { CheckCircle, Code, Cog, Database, GitBranch, Play, Shield, Sparkles } from 'lucide-react'
+import { CheckCircle, Code, Cog, Database, GitBranch, Shield } from 'lucide-react'
 import React, { useEffect, useRef, useState } from 'react'
 
 interface Agent {
@@ -288,88 +288,102 @@ const AgentFlow: React.FC = () => {
 
 const VibeDevSquadHero: React.FC = () => {
   return (
-    <div className="min-h-screen relative overflow-hidden">{/* Removed duplicate background */}
-
-      <div className="relative z-10 container mx-auto px-4 py-20">
-        <div className="flex flex-col items-center text-center space-y-8 max-w-4xl mx-auto">
-          
-          {/* Badge */}
+    <div className="min-h-screen relative overflow-hidden flex items-center justify-center">
+      {/* Content container with enhanced z-index */}
+      <div className="container mx-auto px-4 relative z-20">
+        <div className="flex flex-col items-center justify-center min-h-screen text-center space-y-12">
+          {/* Origin Story Badge */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative"
           >
             <Badge 
               variant="outline" 
-              className="px-4 py-2 text-sm border-purple-400/50 text-purple-300 bg-purple-950/30 backdrop-blur-sm hover:border-purple-400 transition-colors"
+              className="px-6 py-3 text-sm font-medium bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/20 transition-all duration-300 shadow-lg"
             >
-              <Sparkles className="w-4 h-4 mr-2" />
-              Born from 10,000+ hours of developer frustration
+              <span className="relative z-10">Born from 10,000+ hours of developer frustration</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full blur-sm animate-pulse" />
             </Badge>
           </motion.div>
 
           {/* Headlines */}
           <motion.div
-            className="space-y-4"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 1, delay: 0.4 }}
+            className="space-y-6"
           >
-            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent leading-tight">
-              From One Developer to Unlimited Teams
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+              <span className="block bg-gradient-to-r from-white via-cyan-200 to-white bg-clip-text text-transparent animate-pulse">
+                From One Developer
+              </span>
+              <span className="block bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                to Unlimited Teams
+              </span>
             </h1>
-            <h2 className="text-2xl md:text-3xl font-semibold bg-gradient-to-r from-purple-300 via-blue-300 to-cyan-300 bg-clip-text text-transparent opacity-80">
-              AI‑Orchestrated Excellence for Every Scale
+            
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-white/90 max-w-4xl mx-auto leading-relaxed">
+              <span className="bg-gradient-to-r from-cyan-300 to-purple-300 bg-clip-text text-transparent">
+                AI‑Orchestrated Excellence for Every Scale
+              </span>
             </h2>
           </motion.div>
 
-          {/* Agent Visualization */}
+          {/* Value Proposition */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="max-w-3xl mx-auto space-y-4"
+          >
+            <p className="text-lg md:text-xl text-white/80 leading-relaxed">
+              Replace entire development teams with AI agents that never sleep, never quit, and scale infinitely. 
+              From solo entrepreneurs to enterprise giants.
+            </p>
+            <p className="text-base md:text-lg text-white/60">
+              <span className="text-cyan-400 font-semibold">90% cost reduction</span> • 
+              <span className="text-purple-400 font-semibold"> 10x faster delivery</span> • 
+              <span className="text-pink-400 font-semibold"> Zero hiring headaches</span>
+            </p>
+          </motion.div>
+
+          {/* AI Agent Flow Visualization */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.4 }}
-            className="w-full"
+            transition={{ duration: 1, delay: 0.8 }}
+            className="w-full max-w-4xl mx-auto"
           >
             <AgentFlow />
           </motion.div>
 
-          {/* Value Proposition */}
-          <motion.p
-            className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-3xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            Transform your development workflow with AI agents that handle everything from frontend magic to backend architecture, QA testing to DevOps deployment. Scale from solo projects to enterprise teams—without complexity.
-          </motion.p>
-
-          {/* CTAs */}
+          {/* CTA Buttons */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 pt-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <Button
-              size="lg"
-              className="px-8 py-4 text-lg font-semibold bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+            <Button 
+              size="lg" 
+              className="px-8 py-4 text-lg font-semibold bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
             >
-              <Sparkles className="w-5 h-5 mr-2" />
               Start Your Journey
             </Button>
-            <Button
-              size="lg"
+            <Button 
+              size="lg" 
               variant="outline"
-              className="px-8 py-4 text-lg font-semibold border-2 border-cyan-400/50 text-cyan-300 bg-transparent hover:bg-cyan-400/10 hover:border-cyan-400 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/25"
+              className="px-8 py-4 text-lg font-semibold bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/20 hover:border-white/30 transition-all duration-300"
             >
-              <Play className="w-5 h-5 mr-2" />
               Watch Demo
             </Button>
           </motion.div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default VibeDevSquadHero 
