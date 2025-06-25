@@ -38,11 +38,9 @@ export function ComparisonSection({ className }: ComparisonSectionProps) {
           {/* Tab Content */}
           <div className="relative">
             {activeTab === "ai-tools" && (
-              <div className="p-8 rounded-2xl backdrop-blur-xl border border-white/10">
-                <h3 className="text-xl font-semibold text-white mb-4">AI Tools Comparison</h3>
-                <p className="text-gray-300">
-                  Comparison table content will be implemented in Subtask 4.3
-                </p>
+              <div className="space-y-8">
+                <AIToolsComparisonTable />
+                <AdvantageBox />
               </div>
             )}
 
