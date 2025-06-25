@@ -62,7 +62,7 @@ const AgentFlow: React.FC = () => {
       role: 'UI/UX Developer',
       icon: <Code className="w-6 h-6" />,
       color: '#00D4FF',
-      position: { x: 20, y: 30 }
+      position: { x: 15, y: 30 }
     },
     {
       id: 'backend',
@@ -70,7 +70,7 @@ const AgentFlow: React.FC = () => {
       role: 'API Developer',
       icon: <Database className="w-6 h-6" />,
       color: '#4ECDC4',
-      position: { x: 80, y: 30 }
+      position: { x: 75, y: 30 }
     },
     {
       id: 'qa',
