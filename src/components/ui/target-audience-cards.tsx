@@ -202,7 +202,7 @@ const TargetAudienceCards: React.FC = () => {
   ]
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-br from-background via-background/95 to-background/90">
+    <section className="py-20 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div

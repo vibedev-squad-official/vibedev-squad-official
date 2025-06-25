@@ -162,7 +162,7 @@ const SocialProofMetrics = ({
   subtitle = "Join thousands of teams building the future with AI"
 }: SocialProofMetricsProps) => {
   return (
-    <section className="relative py-20 px-4 bg-gradient-to-br from-background via-background/95 to-background/90">
+    <section className="relative py-20 px-4">
       <div className="w-full max-w-6xl mx-auto">
         {/* Header */}
         <motion.div

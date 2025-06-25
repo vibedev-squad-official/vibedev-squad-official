@@ -420,7 +420,7 @@ const AIBackground: React.FC<AIBackgroundProps> = ({
       initial={{ opacity: 0 }}
       animate={controls}
       className={cn(
-        "fixed inset-0 w-full h-full overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 z-0",
+        "fixed inset-0 w-full min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 z-0",
         className
       )}
     >
