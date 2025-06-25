@@ -209,80 +209,76 @@ const AgentFlow: React.FC = () => {
         {agents.map((agent) => (
           <motion.div
             key={agent.id}
-            className="absolute transform -translate-x-1/2 -translate-y-1/2 group"
+            className="absolute group"
             style={{
               left: `${agent.position.x}%`,
               top: `${agent.position.y}%`,
+              transform: 'translate(-50%, -50%)',
               zIndex: 10
             }}
             variants={agentVariants}
+            onMouseEnter={() => setHoveredAgent(agent.id)}
+            onMouseLeave={() => setHoveredAgent(null)}
           >
-            {/* Extended hover area that includes tooltip space */}
-            <div
-              className="relative cursor-pointer flex flex-col items-center"
+            {/* Large invisible hover area */}
+            <div 
+              className="absolute inset-0 cursor-pointer"
               style={{
-                width: '120px',
-                height: '120px',
-                marginTop: '-60px', // Center the hover area
-                marginLeft: '-60px'
+                width: '80px',
+                height: '80px',
+                transform: 'translate(-50%, -50%)',
+                left: '50%',
+                top: '50%'
               }}
-              onMouseEnter={() => setHoveredAgent(agent.id)}
-              onMouseLeave={() => setHoveredAgent(null)}
-            >
-              {/* Tooltip - positioned at the top of the extended hover area */}
-              {hoveredAgent === agent.id && (
-                <motion.div
-                  className="absolute -top-12 left-1/2 transform -translate-x-1/2 px-3 py-2 bg-black/90 backdrop-blur-sm rounded-lg border border-white/20 text-white text-sm whitespace-nowrap z-50"
-                  initial={{ opacity: 0, y: 10, scale: 0.8 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 10, scale: 0.8 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <div className="font-semibold">{agent.name}</div>
-                  <div className="text-xs text-gray-300">{agent.role}</div>
-                  <div 
-                    className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-black/90"
-                  />
-                </motion.div>
-              )}
-
-              {/* Spacer to push agent to center of hover area */}
-              <div className="flex-1"></div>
-
-              {/* Agent content container */}
+            />
+            
+            {/* Tooltip */}
+            {hoveredAgent === agent.id && (
               <motion.div
-                className="relative"
-                whileHover={{ scale: 1.2 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 px-3 py-2 bg-black/90 backdrop-blur-sm rounded-lg border border-white/20 text-white text-sm whitespace-nowrap z-50 pointer-events-none"
+                initial={{ opacity: 0, y: 10, scale: 0.8 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 10, scale: 0.8 }}
+                transition={{ duration: 0.2 }}
               >
-                {/* Glow effect */}
-                <div
-                  className="absolute inset-0 rounded-full blur-md opacity-60 animate-pulse"
-                  style={{
-                    backgroundColor: agent.color,
-                    width: '60px',
-                    height: '60px',
-                    transform: 'translate(-50%, -50%)',
-                    left: '50%',
-                    top: '50%'
-                  }}
+                <div className="font-semibold">{agent.name}</div>
+                <div className="text-xs text-gray-300">{agent.role}</div>
+                <div 
+                  className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-black/90"
                 />
-                
-                {/* Agent node */}
-                <div
-                  className="relative w-12 h-12 rounded-full border-2 flex items-center justify-center text-white backdrop-blur-sm"
-                  style={{
-                    borderColor: agent.color,
-                    backgroundColor: `${agent.color}20`
-                  }}
-                >
-                  {agent.icon}
-                </div>
               </motion.div>
+            )}
 
-              {/* Spacer to center agent in hover area */}
-              <div className="flex-1"></div>
-            </div>
+            {/* Agent content */}
+            <motion.div
+              className="relative"
+              whileHover={{ scale: 1.2 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
+              {/* Glow effect */}
+              <div
+                className="absolute inset-0 rounded-full blur-md opacity-60 animate-pulse"
+                style={{
+                  backgroundColor: agent.color,
+                  width: '60px',
+                  height: '60px',
+                  transform: 'translate(-50%, -50%)',
+                  left: '50%',
+                  top: '50%'
+                }}
+              />
+              
+              {/* Agent node */}
+              <div
+                className="relative w-12 h-12 rounded-full border-2 flex items-center justify-center text-white backdrop-blur-sm"
+                style={{
+                  borderColor: agent.color,
+                  backgroundColor: `${agent.color}20`
+                }}
+              >
+                {agent.icon}
+              </div>
+            </motion.div>
           </motion.div>
         ))}
       </motion.div>
@@ -292,13 +288,7 @@ const AgentFlow: React.FC = () => {
 
 const VibeDevSquadHero: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950/20 to-slate-900 relative overflow-hidden">
-      {/* Animated background */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-pink-500/10 animate-pulse" />
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000" />
-      </div>
+    <div className="min-h-screen relative overflow-hidden">{/* Removed duplicate background */}
 
       <div className="relative z-10 container mx-auto px-4 py-20">
         <div className="flex flex-col items-center text-center space-y-8 max-w-4xl mx-auto">
