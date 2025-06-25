@@ -2,6 +2,7 @@
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import SocialProofMetrics from '@/components/ui/social-proof-metrics'
 import TargetAudienceCards from '@/components/ui/target-audience-cards'
 import { motion, useAnimation, useInView } from 'framer-motion'
 import { CheckCircle, Code, Cog, Database, GitBranch, Shield } from 'lucide-react'
@@ -388,6 +389,9 @@ const VibeDevSquadHero: React.FC = () => {
       
       {/* Target Audience Cards Section */}
       <TargetAudienceCards />
+      
+      {/* Social Proof Metrics Section */}
+      <SocialProofMetrics />
     </>
   );
 };
