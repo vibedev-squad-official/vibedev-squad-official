@@ -3,6 +3,8 @@
 import AIBackground from '@/components/ui/ai-background';
 import VibeDevSquadHeader from '@/components/ui/header';
 import VibeDevSquadHero from '@/components/ui/hero-section';
+import SocialProofMetrics from '@/components/ui/social-proof-metrics';
+import TargetAudienceCards from '@/components/ui/target-audience-cards';
 import { analytics, performance } from '@/lib/analytics';
 import { useEffect } from 'react';
 
@@ -25,12 +27,21 @@ export default function Home() {
   }, []);
 
   return (
-    <AIBackground>
-      {/* Header Component */}
+    <>
+      {/* Unified AI Background */}
+      <AIBackground />
+      
+      {/* Header */}
       <VibeDevSquadHeader />
       
-      {/* Hero Section with AI Agent Flow */}
+      {/* Hero Section */}
       <VibeDevSquadHero />
-    </AIBackground>
+      
+      {/* Target Audience Cards Section */}
+      <TargetAudienceCards />
+      
+      {/* Social Proof Metrics Section */}
+      <SocialProofMetrics />
+    </>
   );
 }
