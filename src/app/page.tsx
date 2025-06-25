@@ -1,5 +1,6 @@
 'use client';
 
+import VibeDevSquadHeader from '@/components/ui/header';
 import { analytics, performance } from '@/lib/analytics';
 import { useEffect } from 'react';
 
@@ -27,11 +28,14 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      {/* Landing page will be built in Phase 01 */}
-      <div className="min-h-screen flex items-center justify-center">
+      {/* Header Component */}
+      <VibeDevSquadHeader />
+      
+      {/* Hero Section for testing header scroll effects */}
+      <div className="min-h-screen flex items-center justify-center pt-20">
         <div className="text-center text-white/80">
           <h1 className="text-4xl font-bold mb-4">Vibe DevSquad</h1>
-          <p className="text-lg mb-6">Landing page coming soon - Phase 01</p>
+          <p className="text-lg mb-6">AI Development Agency Replacement</p>
           
           {/* Test analytics button */}
           <button 
@@ -42,10 +46,39 @@ export default function Home() {
           </button>
           
           <div className="mt-4 text-sm text-white/60">
-            ✅ Vercel Analytics & Speed Insights integrated
+            ✅ Header with glassmorphism effects integrated
           </div>
         </div>
       </div>
+      
+      {/* Additional content sections for scroll testing */}
+      <section id="features" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900">
+        <div className="text-center text-white/80">
+          <h2 className="text-3xl font-bold mb-4">Features Section</h2>
+          <p className="text-lg">Scroll to test header glassmorphism effects</p>
+        </div>
+      </section>
+      
+      <section id="pricing" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-900 to-slate-900">
+        <div className="text-center text-white/80">
+          <h2 className="text-3xl font-bold mb-4">Pricing Section</h2>
+          <p className="text-lg">Header adapts blur and opacity on scroll</p>
+        </div>
+      </section>
+      
+      <section id="comparison" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 to-violet-900">
+        <div className="text-center text-white/80">
+          <h2 className="text-3xl font-bold mb-4">Comparison Section</h2>
+          <p className="text-lg">Test responsive navigation on different screen sizes</p>
+        </div>
+      </section>
+      
+      <section id="testimonials" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-violet-900 to-slate-900">
+        <div className="text-center text-white/80">
+          <h2 className="text-3xl font-bold mb-4">Testimonials Section</h2>
+          <p className="text-lg">Mobile menu transforms for smaller screens</p>
+        </div>
+      </section>
     </div>
   );
 }
