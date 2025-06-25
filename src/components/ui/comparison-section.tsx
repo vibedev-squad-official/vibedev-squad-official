@@ -5,6 +5,8 @@ import { useState } from "react";
 import { AdvantageBox } from "./advantage-box";
 import { AIToolsComparisonTable } from "./ai-tools-comparison-table";
 import { ComparisonDropdown } from "./comparison-dropdown";
+import { CostBreakdownTable } from "./cost-breakdown-table";
+import { CostComparisonCards } from "./cost-comparison-cards";
 import { TabNavigation, TabType } from "./tab-navigation";
 
 interface ComparisonSectionProps {
