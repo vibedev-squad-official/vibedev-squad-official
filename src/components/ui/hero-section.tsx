@@ -98,11 +98,29 @@ const AgentFlow: React.FC = () => {
     }
   ]
 
-  const particles = Array.from({ length: 20 }, () => ({
-    x: Math.random() * 400,
-    y: Math.random() * 300,
-    delay: Math.random() * 3
-  }))
+  // Use deterministic particle positions to avoid hydration mismatch
+  const particles = [
+    { x: 23.5, y: 89.2, delay: 0.5 },
+    { x: 156.8, y: 45.7, delay: 1.2 },
+    { x: 298.1, y: 167.3, delay: 2.1 },
+    { x: 89.4, y: 234.6, delay: 0.8 },
+    { x: 345.2, y: 78.9, delay: 1.7 },
+    { x: 67.3, y: 198.4, delay: 2.3 },
+    { x: 234.7, y: 123.1, delay: 0.3 },
+    { x: 178.9, y: 267.8, delay: 1.9 },
+    { x: 312.6, y: 34.5, delay: 0.7 },
+    { x: 45.8, y: 156.2, delay: 2.5 },
+    { x: 267.4, y: 89.7, delay: 1.1 },
+    { x: 123.7, y: 245.3, delay: 0.9 },
+    { x: 356.1, y: 134.8, delay: 1.6 },
+    { x: 78.3, y: 67.4, delay: 2.2 },
+    { x: 198.6, y: 289.1, delay: 0.4 },
+    { x: 289.2, y: 178.6, delay: 1.4 },
+    { x: 134.5, y: 23.9, delay: 2.7 },
+    { x: 56.7, y: 234.2, delay: 0.6 },
+    { x: 245.9, y: 145.7, delay: 1.8 },
+    { x: 167.3, y: 56.8, delay: 2.9 }
+  ]
 
   useEffect(() => {
     if (isInView) {
