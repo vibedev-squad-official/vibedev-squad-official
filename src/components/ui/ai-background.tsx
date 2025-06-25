@@ -410,17 +410,17 @@ const AIBackground: React.FC<AIBackgroundProps> = ({
   }, [controls]);
 
   const gradientColors = isDark
-    ? ["#1e1b4b", "#312e81", "#3730a3", "#4338ca", "#4f46e5"]
-    : ["#ddd6fe", "#c4b5fd", "#a78bfa", "#8b5cf6", "#7c3aed"];
+    ? ["#0f0f23", "#1a1a2e", "#16213e", "#0f3460", "#533483"]
+    : ["#0f0f23", "#1a1a2e", "#16213e", "#0f3460", "#533483"];
 
-  const particleColor = isDark ? "#ffffff" : "#1e1b4b";
+  const particleColor = "#ffffff";
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={controls}
       className={cn(
-        "relative w-full h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-blue-900 dark:to-indigo-900",
+        "relative w-full h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-gray-900 to-black",
         className
       )}
     >

@@ -31,28 +31,6 @@ export default function Home() {
       
       {/* Hero Section with AI Agent Flow */}
       <VibeDevSquadHero />
-      
-      {/* Additional content sections for scroll testing */}
-      <section id="features" className="min-h-screen flex items-center justify-center">
-        <div className="text-center text-white/80">
-          <h2 className="text-3xl font-bold mb-4">Features Section</h2>
-          <p className="text-lg">Scroll to test header glassmorphism effects</p>
-        </div>
-      </section>
-      
-      <section id="pricing" className="min-h-screen flex items-center justify-center">
-        <div className="text-center text-white/80">
-          <h2 className="text-3xl font-bold mb-4">Pricing Section</h2>
-          <p className="text-lg">More content for scrolling</p>
-        </div>
-      </section>
-      
-      <section id="contact" className="min-h-screen flex items-center justify-center">
-        <div className="text-center text-white/80">
-          <h2 className="text-3xl font-bold mb-4">Contact Section</h2>
-          <p className="text-lg">Final section for testing</p>
-        </div>
-      </section>
     </AIBackground>
   );
 }
