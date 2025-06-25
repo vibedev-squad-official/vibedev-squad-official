@@ -98,7 +98,7 @@ const AgentFlow: React.FC = () => {
     }
   ]
 
-  const particles = Array.from({ length: 20 }, (_, i) => ({
+  const particles = Array.from({ length: 20 }, () => ({
     x: Math.random() * 400,
     y: Math.random() * 300,
     delay: Math.random() * 3
@@ -126,7 +126,7 @@ const AgentFlow: React.FC = () => {
       scale: 1,
       opacity: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 100,
         damping: 10
       }
@@ -195,7 +195,9 @@ const AgentFlow: React.FC = () => {
             style={{
               left: `${agent.position.x}%`,
               top: `${agent.position.y}%`,
-              zIndex: 10
+              zIndex: 10,
+              width: '80px',
+              height: '80px'
             }}
             variants={agentVariants}
             whileHover={{ scale: 1.2 }}
@@ -204,20 +206,20 @@ const AgentFlow: React.FC = () => {
           >
             {/* Glow effect */}
             <div
-              className="absolute inset-0 rounded-full blur-md opacity-60 animate-pulse"
+              className="absolute rounded-full blur-md opacity-60 animate-pulse"
               style={{
                 backgroundColor: agent.color,
                 width: '60px',
                 height: '60px',
-                transform: 'translate(-50%, -50%)',
                 left: '50%',
-                top: '50%'
+                top: '50%',
+                transform: 'translate(-50%, -50%)'
               }}
             />
             
             {/* Agent node */}
             <div
-              className="relative w-12 h-12 rounded-full border-2 flex items-center justify-center text-white backdrop-blur-sm"
+              className="relative w-12 h-12 rounded-full border-2 flex items-center justify-center text-white backdrop-blur-sm mx-auto mt-4"
               style={{
                 borderColor: agent.color,
                 backgroundColor: `${agent.color}20`
@@ -229,11 +231,12 @@ const AgentFlow: React.FC = () => {
             {/* Tooltip */}
             {hoveredAgent === agent.id && (
               <motion.div
-                className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-6 px-3 py-2 bg-black/90 backdrop-blur-sm rounded-lg border border-white/20 text-white text-sm whitespace-nowrap z-50"
+                className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 px-3 py-2 bg-black/90 backdrop-blur-sm rounded-lg border border-white/20 text-white text-sm whitespace-nowrap z-50"
                 style={{ pointerEvents: 'none' }}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 10, scale: 0.8 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 10, scale: 0.8 }}
+                transition={{ duration: 0.2 }}
               >
                 <div className="font-semibold">{agent.name}</div>
                 <div className="text-xs text-gray-300">{agent.role}</div>

@@ -23,9 +23,7 @@ export default function Home() {
     }, 100);
   }, []);
 
-  const handleTestClick = () => {
-    analytics.ctaClick('test-button', 'homepage');
-  };
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
