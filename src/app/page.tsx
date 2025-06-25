@@ -27,7 +27,7 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    <main className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative">
       {/* Unified AI Background */}
       <AIBackground />
       
@@ -38,10 +38,14 @@ export default function Home() {
       <VibeDevSquadHero />
       
       {/* Target Audience Cards Section */}
-      <TargetAudienceCards />
+      <section className="relative z-10 py-20 px-4">
+        <TargetAudienceCards />
+      </section>
       
       {/* Social Proof Metrics Section */}
-      <SocialProofMetrics />
-    </>
+      <section className="relative z-10 py-20 px-4">
+        <SocialProofMetrics />
+      </section>
+    </main>
   );
 }

@@ -410,8 +410,8 @@ const AIBackground: React.FC<AIBackgroundProps> = ({
   }, [controls]);
 
   const gradientColors = isDark
-    ? ["#0f0f23", "#1a1a2e", "#16213e", "#0f3460", "#533483"]
-    : ["#0f0f23", "#1a1a2e", "#16213e", "#0f3460", "#533483"];
+    ? ["#1e1b4b", "#312e81", "#4c1d95", "#6b21a8", "#7c3aed"]
+    : ["#1e1b4b", "#312e81", "#4c1d95", "#6b21a8", "#7c3aed"];
 
   const particleColor = "#ffffff";
 
@@ -420,7 +420,7 @@ const AIBackground: React.FC<AIBackgroundProps> = ({
       initial={{ opacity: 0 }}
       animate={controls}
       className={cn(
-        "relative w-full h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-gray-900 to-black",
+        "fixed inset-0 w-full h-full overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 z-0",
         className
       )}
     >
@@ -440,10 +440,6 @@ const AIBackground: React.FC<AIBackgroundProps> = ({
       />
 
       <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-background/10" />
-      
-      <div className="relative z-10 flex items-center justify-center h-full">
-        {children}
-      </div>
     </motion.div>
   );
 };
