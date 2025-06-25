@@ -1,6 +1,7 @@
 'use client';
 
 import VibeDevSquadHeader from '@/components/ui/header';
+import VibeDevSquadHero from '@/components/ui/hero-section';
 import { analytics, performance } from '@/lib/analytics';
 import { useEffect } from 'react';
 
@@ -31,25 +32,8 @@ export default function Home() {
       {/* Header Component */}
       <VibeDevSquadHeader />
       
-      {/* Hero Section for testing header scroll effects */}
-      <div className="min-h-screen flex items-center justify-center pt-20">
-        <div className="text-center text-white/80">
-          <h1 className="text-4xl font-bold mb-4">Vibe DevSquad</h1>
-          <p className="text-lg mb-6">AI Development Agency Replacement</p>
-          
-          {/* Test analytics button */}
-          <button 
-            onClick={handleTestClick}
-            className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-medium transition-colors"
-          >
-            Test Analytics Tracking
-          </button>
-          
-          <div className="mt-4 text-sm text-white/60">
-            ✅ Header with glassmorphism effects integrated
-          </div>
-        </div>
-      </div>
+      {/* Hero Section with AI Agent Flow */}
+      <VibeDevSquadHero />
       
       {/* Additional content sections for scroll testing */}
       <section id="features" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900">
