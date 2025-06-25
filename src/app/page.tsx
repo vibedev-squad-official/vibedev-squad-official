@@ -1,6 +1,7 @@
 'use client';
 
 import AIBackground from '@/components/ui/ai-background';
+import { ComparisonSection } from '@/components/ui/comparison-section';
 import FeaturesSection from '@/components/ui/features-section';
 import VibeDevSquadHeader from '@/components/ui/header';
 import VibeDevSquadHero from '@/components/ui/hero-section';
@@ -77,6 +78,9 @@ export default function Home() {
           <PricingCards />
         </div>
       </section>
+      
+      {/* Interactive Comparison Section */}
+      <ComparisonSection />
       
       {/* Social Proof Metrics Section */}
       <section className="relative z-10 py-20 px-4">
