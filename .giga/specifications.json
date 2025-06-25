@@ -1,0 +1,18 @@
+[
+  {
+    "fileName": "main-overview.mdc",
+    "description": "Complete system overview covering the AI agent orchestration architecture, core business scaling model, and high-level component interactions"
+  },
+  {
+    "fileName": "ai-agent-orchestration.mdc",
+    "description": "Detailed documentation of the AI agent roles, communication patterns, workflows, and interaction models between the 6 specialized AI agents"
+  },
+  {
+    "fileName": "scaling-algorithms.mdc",
+    "description": "Technical documentation of the business scaling calculations, resource allocation algorithms, and ROI models for different team sizes"
+  },
+  {
+    "fileName": "data-flow-patterns.mdc",
+    "description": "Comprehensive documentation of data flow between AI agents, analytics systems, and resource management components including state management and component interactions"
+  }
+]

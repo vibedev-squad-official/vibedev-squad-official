@@ -187,7 +187,7 @@ export function PricingCards({
   };
 
   return (
-    <section className="relative py-20 bg-gradient-to-br from-background via-background/95 to-background text-foreground overflow-hidden">
+    <section className="relative py-20 text-foreground overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0">
         <motion.div 

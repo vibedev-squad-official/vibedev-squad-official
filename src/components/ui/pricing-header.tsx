@@ -145,7 +145,7 @@ export function PricingSectionHeader({
       </style>
       
       <section className={cn(
-        "relative py-20 bg-gradient-to-br from-background via-background/95 to-background",
+        "relative py-20",
         "text-center overflow-hidden",
         className
       )}>
@@ -197,7 +197,7 @@ export function PricingSectionHeader({
         </div>
 
         {/* Additional Glow Effects */}
-        <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-background/50 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-transparent pointer-events-none" />
       </section>
     </>
   )

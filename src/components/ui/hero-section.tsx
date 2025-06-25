@@ -78,7 +78,7 @@ const AgentFlow: React.FC = () => {
       role: 'Quality Assurance',
       icon: <CheckCircle className="w-6 h-6" />,
       color: '#96CEB4',
-      position: { x: 30, y: 55 }
+      position: { x: 25, y: 55 }
     },
     {
       id: 'security',
@@ -86,7 +86,7 @@ const AgentFlow: React.FC = () => {
       role: 'Security Expert',
       icon: <Shield className="w-6 h-6" />,
       color: '#FFEAA7',
-      position: { x: 60, y: 55 }
+      position: { x: 55, y: 55 }
     },
     {
       id: 'devops',
@@ -94,7 +94,7 @@ const AgentFlow: React.FC = () => {
       role: 'Deployment Specialist',
       icon: <Cog className="w-6 h-6" />,
       color: '#FF6B6B',
-      position: { x: 45, y: 80 }
+      position: { x: 40, y: 80 }
     }
   ]
 
