@@ -336,18 +336,7 @@ const FeaturesSection: React.FC = () => {
 
   return (
     <section className="relative py-20 px-4 overflow-hidden">
-      {/* Subtle overlay for glassmorphism effect - no solid background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background/10 via-background/5 to-background/10 backdrop-blur-sm">
-        <DottedBackground
-          dotColor="#3b82f6"
-          dotSize={1}
-          dotSpacing={30}
-          enableVignette={false}
-          vignetteColor="rgb(0,0,0)"
-          enableInnerGlow={false}
-          innerGlowColor="rgb(0,0,0)"
-        />
-      </div>
+      {/* Pure transparent - let AIBackground show through */}
 
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
