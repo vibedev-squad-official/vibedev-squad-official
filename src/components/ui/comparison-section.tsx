@@ -2,6 +2,8 @@
 
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { AdvantageBox } from "./advantage-box";
+import { AIToolsComparisonTable } from "./ai-tools-comparison-table";
 import { ComparisonDropdown } from "./comparison-dropdown";
 import { TabNavigation, TabType } from "./tab-navigation";
 
