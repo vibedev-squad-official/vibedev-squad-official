@@ -201,12 +201,12 @@ const AgentFlow: React.FC = () => {
           >
             {/* Extended hover area that includes tooltip space */}
             <div
-              className="relative cursor-pointer"
+              className="relative cursor-pointer flex flex-col items-center"
               style={{
                 width: '120px',
                 height: '120px',
-                transform: 'translate(-50%, -50%)',
-                paddingTop: '40px' // Space for tooltip
+                marginTop: '-60px', // Center the hover area
+                marginLeft: '-60px'
               }}
               onMouseEnter={() => setHoveredAgent(agent.id)}
               onMouseLeave={() => setHoveredAgent(null)}
@@ -214,7 +214,7 @@ const AgentFlow: React.FC = () => {
               {/* Tooltip - positioned at the top of the extended hover area */}
               {hoveredAgent === agent.id && (
                 <motion.div
-                  className="absolute top-0 left-1/2 transform -translate-x-1/2 px-3 py-2 bg-black/90 backdrop-blur-sm rounded-lg border border-white/20 text-white text-sm whitespace-nowrap z-50"
+                  className="absolute -top-12 left-1/2 transform -translate-x-1/2 px-3 py-2 bg-black/90 backdrop-blur-sm rounded-lg border border-white/20 text-white text-sm whitespace-nowrap z-50"
                   initial={{ opacity: 0, y: 10, scale: 0.8 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 10, scale: 0.8 }}
@@ -228,9 +228,12 @@ const AgentFlow: React.FC = () => {
                 </motion.div>
               )}
 
+              {/* Spacer to push agent to center of hover area */}
+              <div className="flex-1"></div>
+
               {/* Agent content container */}
               <motion.div
-                className="absolute bottom-0 left-1/2 transform -translate-x-1/2"
+                className="relative"
                 whileHover={{ scale: 1.2 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
@@ -258,6 +261,9 @@ const AgentFlow: React.FC = () => {
                   {agent.icon}
                 </div>
               </motion.div>
+
+              {/* Spacer to center agent in hover area */}
+              <div className="flex-1"></div>
             </div>
           </motion.div>
         ))}
