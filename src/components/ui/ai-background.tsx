@@ -77,9 +77,16 @@ const Particles: React.FC<ParticlesProps> = ({
   const mousePosition = useMousePosition();
   const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
+  const [isClient, setIsClient] = useState(false);
   const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
 
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+    
     if (canvasRef.current) {
       context.current = canvasRef.current.getContext("2d");
     }
@@ -90,7 +97,7 @@ const Particles: React.FC<ParticlesProps> = ({
     return () => {
       window.removeEventListener("resize", initCanvas);
     };
-  }, [color]);
+  }, [color, isClient]);
 
   useEffect(() => {
     onMouseMove();
@@ -266,6 +273,18 @@ const Particles: React.FC<ParticlesProps> = ({
     window.requestAnimationFrame(animate);
   };
 
+  if (!isClient) {
+    return (
+      <div
+        className={cn("pointer-events-none", className)}
+        ref={canvasContainerRef}
+        aria-hidden="true"
+      >
+        <canvas ref={canvasRef} className="size-full" />
+      </div>
+    );
+  }
+
   return (
     <div
       className={cn("pointer-events-none", className)}
@@ -324,11 +343,49 @@ const AnimatedGradient: React.FC<AnimatedGradientProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const dimensions = useDimensions(containerRef);
+  const [isClient, setIsClient] = useState(false);
+  const [circleData, setCircleData] = useState<Array<{
+    top: number;
+    left: number;
+    width: number;
+    height: number;
+    transforms: {
+      tx1: number;
+      ty1: number;
+      tx2: number;
+      ty2: number;
+      tx3: number;
+      ty3: number;
+      tx4: number;
+      ty4: number;
+    };
+  }>>([]);
 
   const circleSize = useMemo(
     () => Math.max(dimensions.width, dimensions.height),
     [dimensions.width, dimensions.height]
   );
+
+  // Generate random values only on client side to avoid hydration mismatch
+  useEffect(() => {
+    setIsClient(true);
+    setCircleData(colors.map(() => ({
+      top: Math.random() * 50,
+      left: Math.random() * 50,
+      width: circleSize * randomInt(0.5, 1.5),
+      height: circleSize * randomInt(0.5, 1.5),
+      transforms: {
+        tx1: Math.random() - 0.5,
+        ty1: Math.random() - 0.5,
+        tx2: Math.random() - 0.5,
+        ty2: Math.random() - 0.5,
+        tx3: Math.random() - 0.5,
+        ty3: Math.random() - 0.5,
+        tx4: Math.random() - 0.5,
+        ty4: Math.random() - 0.5,
+      }
+    })));
+  }, [colors.length, circleSize]);
 
   const blurClass =
     blur === "light"
@@ -337,41 +394,54 @@ const AnimatedGradient: React.FC<AnimatedGradientProps> = ({
       ? "blur-3xl"
       : "blur-[100px]";
 
+  if (!isClient) {
+    return (
+      <div ref={containerRef} className="absolute inset-0 overflow-hidden">
+        <div className={cn(`absolute inset-0`, blurClass)} />
+      </div>
+    );
+  }
+
   return (
     <div ref={containerRef} className="absolute inset-0 overflow-hidden">
       <div className={cn(`absolute inset-0`, blurClass)}>
-        {colors.map((color, index) => (
-          <svg
-            key={index}
-            className="absolute animate-background-gradient"
-            style={
-              {
-                top: `${Math.random() * 50}%`,
-                left: `${Math.random() * 50}%`,
-                "--background-gradient-speed": `${1 / speed}s`,
-                "--tx-1": Math.random() - 0.5,
-                "--ty-1": Math.random() - 0.5,
-                "--tx-2": Math.random() - 0.5,
-                "--ty-2": Math.random() - 0.5,
-                "--tx-3": Math.random() - 0.5,
-                "--ty-3": Math.random() - 0.5,
-                "--tx-4": Math.random() - 0.5,
-                "--ty-4": Math.random() - 0.5,
-              } as React.CSSProperties
-            }
-            width={circleSize * randomInt(0.5, 1.5)}
-            height={circleSize * randomInt(0.5, 1.5)}
-            viewBox="0 0 100 100"
-          >
-            <circle
-              cx="50"
-              cy="50"
-              r="50"
-              fill={color}
-              className="opacity-30 dark:opacity-[0.15]"
-            />
-          </svg>
-        ))}
+        {colors.map((color, index) => {
+          const data = circleData[index];
+          if (!data) return null;
+          
+          return (
+            <svg
+              key={index}
+              className="absolute animate-background-gradient"
+              style={
+                {
+                  top: `${data.top}%`,
+                  left: `${data.left}%`,
+                  "--background-gradient-speed": `${1 / speed}s`,
+                  "--tx-1": data.transforms.tx1,
+                  "--ty-1": data.transforms.ty1,
+                  "--tx-2": data.transforms.tx2,
+                  "--ty-2": data.transforms.ty2,
+                  "--tx-3": data.transforms.tx3,
+                  "--ty-3": data.transforms.ty3,
+                  "--tx-4": data.transforms.tx4,
+                  "--ty-4": data.transforms.ty4,
+                } as React.CSSProperties
+              }
+              width={data.width}
+              height={data.height}
+              viewBox="0 0 100 100"
+            >
+              <circle
+                cx="50"
+                cy="50"
+                r="50"
+                fill={color}
+                className="opacity-30 dark:opacity-[0.15]"
+              />
+            </svg>
+          );
+        })}
       </div>
     </div>
   );
