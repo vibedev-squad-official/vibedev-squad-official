@@ -89,7 +89,7 @@ export function StoryContentContainer({ className }: StoryContentContainerProps 
               <p className="text-lg md:text-xl lg:text-2xl leading-relaxed text-foreground/90 font-medium">
                 I was a solo entrepreneur building{" "}
                 <span className="text-primary font-semibold">Vibe DevSquad</span>. 
-                I needed a full development team but couldn't afford $300K/year.
+                I needed a full development team but couldn&apos;t afford $300K/year.
               </p>
               
               <p className="text-base md:text-lg lg:text-xl leading-relaxed text-foreground/80">
@@ -103,7 +103,7 @@ export function StoryContentContainer({ className }: StoryContentContainerProps 
               </p>
               
               <p className="text-lg md:text-xl lg:text-2xl leading-relaxed text-foreground/90 font-medium">
-                Now, whether you're solo like I was, leading a 10-person team, 
+                Now, whether you&apos;re solo like I was, leading a 10-person team, 
                 or managing enterprise development - you can use the same AI 
                 orchestration that built this platform.
               </p>

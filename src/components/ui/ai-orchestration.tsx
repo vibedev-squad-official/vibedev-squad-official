@@ -79,7 +79,7 @@ const GradientTracing: React.FC<GradientTracingProps> = ({
 }
 
 const AIAgentOrchestration: React.FC = () => {
-  const [hoveredAgent, setHoveredAgent] = useState<string | null>(null)
+  const [, setHoveredAgent] = useState<string | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const centerControls = useAnimation()
 

@@ -10,7 +10,6 @@ interface AnimatedTextProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string
   textClassName?: string
   underlineClassName?: string
-  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span"
   underlineGradient?: string
   underlineHeight?: string
   underlineOffset?: string
@@ -25,7 +24,6 @@ const AnimatedText = React.forwardRef<HTMLDivElement, AnimatedTextProps>(
     className,
     textClassName,
     underlineClassName,
-    as: Component = "h1",
     underlineGradient = "from-blue-500 via-purple-500 to-pink-500",
     underlineHeight = "h-1",
     underlineOffset = "-bottom-2",

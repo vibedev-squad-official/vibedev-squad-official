@@ -9,7 +9,7 @@ interface MetricData {
   title: string;
   value: string;
   description: string;
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<{ className?: string }>;
   color: 'blue' | 'purple' | 'cyan' | 'green';
 }
 

@@ -155,7 +155,7 @@ function GlowEffect({
 }
 
 // DottedBackground Component
-interface DottedBackgroundProps {
+/* interface DottedBackgroundProps {
   dotColor?: string;
   backgroundColor?: string;
   dotSize?: number;
@@ -166,9 +166,9 @@ interface DottedBackgroundProps {
   innerGlowColor?: string;
   className?: string;
   style?: React.CSSProperties;
-}
+} */
 
-const DottedBackground: React.FC<DottedBackgroundProps> = ({
+/* const DottedBackground: React.FC<DottedBackgroundProps> = ({
   dotColor = '#0ea5e9',
   backgroundColor = 'transparent',
   dotSize = 1,
@@ -251,7 +251,7 @@ const DottedBackground: React.FC<DottedBackgroundProps> = ({
       </svg>
     </div>
   );
-};
+}; */
 
 // Feature Card Component
 interface FeatureCardProps {

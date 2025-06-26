@@ -103,7 +103,7 @@ const SparklesText: React.FC<SparklesTextProps> = ({
     initializeStars();
     const interval = setInterval(() => {
       setSparkles(currentSparkles =>
-        currentSparkles.map(star => generateStar())
+        currentSparkles.map(() => generateStar())
       );
     }, 3000);
 
@@ -213,7 +213,7 @@ const OriginStorySection: React.FC = () => {
             className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"
             variants={fadeInUp}
           >
-            You know the feeling. It's 2 AM, you're drowning in tabs, switching between Slack, Jira, GitHub, 
+            You know the feeling. It&apos;s 2 AM, you&apos;re drowning in tabs, switching between Slack, Jira, GitHub, 
             and 12 other tools just to ship one simple feature. There has to be a better way.
           </motion.p>
         </motion.div>

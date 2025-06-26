@@ -43,7 +43,7 @@ export default function FinalCTAHeader() {
       
       <AnimatedContainer delay={0.2}>
         <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-          Join 2,500+ teams who've discovered the power of AI orchestration
+                      Join 2,500+ teams who&apos;ve discovered the power of AI orchestration
         </p>
       </AnimatedContainer>
     </div>

@@ -28,7 +28,7 @@ export function AdvantageBox({ className }: AdvantageBoxProps) {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/20 border border-green-400/30">
               <Star className="w-4 h-4 text-green-400" />
               <span className="text-sm font-medium text-green-300">
-                Why We're Different
+                Why We&apos;re Different
               </span>
             </div>
           </div>

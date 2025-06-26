@@ -14,11 +14,11 @@ interface MetricData {
   glowColor: string
 }
 
-interface MetricsBarProps {
-  title?: string
-  subtitle?: string
-  metrics?: MetricData[]
-}
+// interface MetricsBarProps {
+//   title?: string
+//   subtitle?: string
+//   metrics?: MetricData[]
+// }
 
 function AnimatedCounter({ 
   value, 

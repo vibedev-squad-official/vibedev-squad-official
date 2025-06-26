@@ -453,7 +453,7 @@ interface AIBackgroundProps {
 }
 
 const AIBackground: React.FC<AIBackgroundProps> = ({
-  children,
+
   className = "",
 }) => {
   const [isDark, setIsDark] = useState(false);
