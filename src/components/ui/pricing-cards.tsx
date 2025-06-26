@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight, Building, Check, Crown, Phone, Star, Users, Zap } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface PricingTier {
   name: string;
