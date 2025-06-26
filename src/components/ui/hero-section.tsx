@@ -379,6 +379,74 @@ const VibeDevSquadHero: React.FC = () => {
               Watch Demo
             </Button>
           </motion.div>
+
+          {/* Footer Content in Hero */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.4 }}
+            className="pt-16 mt-16 border-t border-white/10"
+          >
+            {/* Logo and Tagline */}
+            <div className="flex flex-col items-center space-y-4 mb-8">
+              <div className="flex items-center space-x-3">
+                <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-lg">V</span>
+                </div>
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                  Vibe DevSquad
+                </h3>
+              </div>
+              <p className="text-white/60 text-center max-w-2xl">
+                Built by a solo entrepreneur using AI orchestration. Scaled for teams of any size.
+              </p>
+            </div>
+
+            {/* Navigation Links */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8 max-w-4xl mx-auto">
+              <div>
+                <h4 className="text-white font-semibold mb-3 text-sm">Product</h4>
+                <ul className="space-y-2 text-sm text-white/60">
+                  <li><a href="#features" className="hover:text-cyan-400 transition-colors">Features</a></li>
+                  <li><a href="#pricing" className="hover:text-cyan-400 transition-colors">Pricing</a></li>
+                  <li><a href="#testimonials" className="hover:text-cyan-400 transition-colors">Testimonials</a></li>
+                  <li><a href="#roi-calculator" className="hover:text-cyan-400 transition-colors">ROI Calculator</a></li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-white font-semibold mb-3 text-sm">Company</h4>
+                <ul className="space-y-2 text-sm text-white/60">
+                  <li><a href="/about" className="hover:text-cyan-400 transition-colors">About Us</a></li>
+                  <li><a href="/blog" className="hover:text-cyan-400 transition-colors">Blog</a></li>
+                  <li><a href="/careers" className="hover:text-cyan-400 transition-colors">Careers</a></li>
+                  <li><a href="/contact" className="hover:text-cyan-400 transition-colors">Contact</a></li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-white font-semibold mb-3 text-sm">Resources</h4>
+                <ul className="space-y-2 text-sm text-white/60">
+                  <li><a href="/docs" className="hover:text-cyan-400 transition-colors">Documentation</a></li>
+                  <li><a href="/api" className="hover:text-cyan-400 transition-colors">API Reference</a></li>
+                  <li><a href="/guides" className="hover:text-cyan-400 transition-colors">Guides</a></li>
+                  <li><a href="/support" className="hover:text-cyan-400 transition-colors">Support</a></li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-white font-semibold mb-3 text-sm">Legal</h4>
+                <ul className="space-y-2 text-sm text-white/60">
+                  <li><a href="/privacy" className="hover:text-cyan-400 transition-colors">Privacy Policy</a></li>
+                  <li><a href="/terms" className="hover:text-cyan-400 transition-colors">Terms of Service</a></li>
+                  <li><a href="/security" className="hover:text-cyan-400 transition-colors">Security</a></li>
+                  <li><a href="/compliance" className="hover:text-cyan-400 transition-colors">Compliance</a></li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Copyright */}
+            <div className="text-center text-white/40 text-sm">
+              © {new Date().getFullYear()} Vibe DevSquad. All rights reserved.
+            </div>
+          </motion.div>
         </div>
       </div>
     </div>
