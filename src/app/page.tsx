@@ -1,9 +1,12 @@
 'use client';
 
+import ActivityFeed from '@/components/ui/activity-feed';
 import AIBackground from '@/components/ui/ai-background';
 import { ComparisonSection } from '@/components/ui/comparison-section';
 import { DeploymentChecklist } from '@/components/ui/deployment-checklist';
 import FeaturesSection from '@/components/ui/features-section';
+import FinalCTAButtons from '@/components/ui/final-cta-buttons';
+import FinalCTAHeader from '@/components/ui/final-cta-header';
 import { GetStartedHeader } from '@/components/ui/get-started-header';
 import VibeDevSquadHeader from '@/components/ui/header';
 import VibeDevSquadHero from '@/components/ui/hero-section';
@@ -18,6 +21,7 @@ import SocialProofMetrics from '@/components/ui/social-proof-metrics';
 import TargetAudienceCards from '@/components/ui/target-audience-cards';
 import TestimonialCards from '@/components/ui/testimonial-cards';
 import TestimonialsHeader from '@/components/ui/testimonials-header';
+import TrustIndicators from '@/components/ui/trust-indicators';
 import { analytics, performance } from '@/lib/analytics';
 import { useEffect } from 'react';
 
@@ -105,6 +109,16 @@ export default function Home() {
       {/* Social Proof Metrics Section */}
       <section className="relative z-10 py-20 px-4">
         <SocialProofMetrics />
+      </section>
+      
+      {/* Final CTA Section */}
+      <section className="relative z-10 py-20 px-4">
+        <div className="max-w-7xl mx-auto">
+          <FinalCTAHeader />
+          <ActivityFeed />
+          <FinalCTAButtons />
+          <TrustIndicators />
+        </div>
       </section>
     </main>
   );
