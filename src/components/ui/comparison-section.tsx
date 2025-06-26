@@ -56,11 +56,8 @@ export function ComparisonSection({ className }: ComparisonSectionProps) {
             )}
 
             {activeTab === "roi-calculator" && (
-              <div className="p-8 rounded-2xl backdrop-blur-xl border border-white/10">
-                <h3 className="text-xl font-semibold text-white mb-4">ROI Calculator</h3>
-                <p className="text-gray-300">
-                  ROI calculator content will be implemented in Subtask 4.5
-                </p>
+              <div className="space-y-8">
+                <ROICalculator />
               </div>
             )}
           </div>
