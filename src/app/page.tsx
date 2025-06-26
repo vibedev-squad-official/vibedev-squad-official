@@ -2,7 +2,9 @@
 
 import AIBackground from '@/components/ui/ai-background';
 import { ComparisonSection } from '@/components/ui/comparison-section';
+import { DeploymentChecklist } from '@/components/ui/deployment-checklist';
 import FeaturesSection from '@/components/ui/features-section';
+import { GetStartedHeader } from '@/components/ui/get-started-header';
 import VibeDevSquadHeader from '@/components/ui/header';
 import VibeDevSquadHero from '@/components/ui/hero-section';
 import MetricsBar from '@/components/ui/metrics-bar';
@@ -11,6 +13,7 @@ import { PricingCards } from '@/components/ui/pricing-cards';
 import { PricingSectionHeader } from '@/components/ui/pricing-header';
 import ProcessCards from '@/components/ui/process-cards';
 import ProcessHeader from '@/components/ui/process-header';
+import { ScaleOptionCards } from '@/components/ui/scale-option-cards';
 import SocialProofMetrics from '@/components/ui/social-proof-metrics';
 import TargetAudienceCards from '@/components/ui/target-audience-cards';
 import { analytics, performance } from '@/lib/analytics';
@@ -81,6 +84,13 @@ export default function Home() {
       
       {/* Interactive Comparison Section */}
       <ComparisonSection />
+      
+      {/* Get Started Section */}
+      <section className="relative z-10">
+        <GetStartedHeader />
+        <ScaleOptionCards />
+        <DeploymentChecklist />
+      </section>
       
       {/* Social Proof Metrics Section */}
       <section className="relative z-10 py-20 px-4">
