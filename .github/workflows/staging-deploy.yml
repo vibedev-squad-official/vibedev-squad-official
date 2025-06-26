@@ -1,0 +1,62 @@
+name: Deploy to Staging
+
+on:
+  push:
+    branches: [ staging/phase-01-landing-page ]
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to deploy'
+        required: true
+        default: 'feature/phase-01-landing-page-foundation'
+
+jobs:
+  deploy-staging:
+    name: Deploy to DigitalOcean Staging
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.inputs.branch || github.ref }}
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run tests
+      run: npm test
+    
+    - name: Build application
+      run: npm run build
+      env:
+        NODE_ENV: staging
+        NEXT_PUBLIC_APP_ENV: staging
+        NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.STAGING_SUPABASE_URL }}
+        NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.STAGING_SUPABASE_ANON_KEY }}
+    
+    - name: Deploy to DigitalOcean App Platform
+      uses: digitalocean/app_action@v1.1.5
+      with:
+        app_name: vibedevsquad-staging
+        token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+    
+    - name: Health Check
+      run: |
+        echo "Waiting for deployment to be ready..."
+        sleep 60
+        curl -f https://vibedevsquad-staging.ondigitalocean.app/api/health || exit 1
+        echo "Staging deployment successful!"
+    
+    - name: Notify Success
+      if: success()
+      run: |
+        echo "✅ Phase 01 Landing Page successfully deployed to staging!"
+        echo "🌐 Staging URL: https://vibedevsquad-staging.ondigitalocean.app"
+        echo "🔗 Test the landing page before merging to main" 
