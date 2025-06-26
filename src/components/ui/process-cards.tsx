@@ -27,7 +27,6 @@ function GlowEffect({
   const BASE_TRANSITION = {
     repeat: Infinity,
     duration: duration,
-    ease: 'linear',
   };
 
   const animations = {
@@ -49,6 +48,32 @@ function GlowEffect({
         ...BASE_TRANSITION,
         repeatType: 'mirror' as const,
       },
+    },
+    breathe: {
+      scale: [1 * scale, 1.05 * scale, 1 * scale],
+      opacity: [0.4, 0.7, 0.4],
+      background: colors.map(
+        (color) =>
+          `radial-gradient(circle at 50% 50%, ${color} 0%, transparent 70%)`
+      ),
+      transition: {
+        ...BASE_TRANSITION,
+        repeatType: 'mirror' as const,
+      },
+    },
+    colorShift: {
+      background: colors.map(
+        (color) =>
+          `linear-gradient(45deg, ${color} 0%, transparent 100%)`
+      ),
+      transition: BASE_TRANSITION,
+    },
+    flowHorizontal: {
+      background: [
+        `linear-gradient(90deg, ${colors.join(', ')})`,
+        `linear-gradient(270deg, ${colors.join(', ')})`,
+      ],
+      transition: BASE_TRANSITION,
     },
     static: {
       background: `linear-gradient(to right, ${colors.join(', ')})`,

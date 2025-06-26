@@ -153,8 +153,7 @@ export function PricingCards({
       opacity: 1, 
       y: 0,
       transition: { 
-        duration: 0.8, 
-        ease: [0.23, 0.86, 0.39, 0.96] 
+        duration: 0.8
       }
     }
   };
@@ -177,8 +176,7 @@ export function PricingCards({
       y: -8,
       rotateY: 2,
       transition: {
-        duration: 0.4,
-        ease: "easeOut"
+        duration: 0.4
       }
     }
   };
@@ -192,8 +190,7 @@ export function PricingCards({
       ],
       transition: {
         duration: 3,
-        repeat: Infinity,
-        ease: "easeInOut"
+        repeat: Infinity
       }
     }
   };
@@ -209,8 +206,7 @@ export function PricingCards({
           }}
           transition={{
             duration: 30,
-            repeat: Infinity,
-            ease: "linear"
+            repeat: Infinity
           }}
           style={{
             backgroundSize: '400% 400%'
@@ -227,8 +223,7 @@ export function PricingCards({
           }}
           transition={{
             duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut"
+            repeat: Infinity
           }}
         />
         <motion.div
@@ -240,8 +235,7 @@ export function PricingCards({
           }}
           transition={{
             duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut"
+            repeat: Infinity
           }}
         />
 
@@ -262,7 +256,6 @@ export function PricingCards({
             transition={{
               duration: 3 + (i * 0.2), // Use index instead of Math.random()
               repeat: Infinity,
-              ease: "easeInOut",
               delay: i * 0.1, // Use index instead of Math.random()
             }}
           />
@@ -353,8 +346,7 @@ export function PricingCards({
                   }}
                   transition={{
                     duration: 2,
-                    repeat: hoveredCard === index ? Infinity : 0,
-                    ease: "easeInOut"
+                    repeat: hoveredCard === index ? Infinity : 0
                   }}
                 />
 
@@ -378,8 +370,7 @@ export function PricingCards({
                   }}
                   transition={{
                     duration: 10,
-                    repeat: Infinity,
-                    ease: "linear"
+                    repeat: Infinity
                   }}
                   style={{
                     backgroundSize: '200% 200%'
@@ -501,8 +492,7 @@ export function PricingCards({
               }}
               transition={{
                 duration: 15,
-                repeat: Infinity,
-                ease: "linear"
+                repeat: Infinity
               }}
               style={{
                 backgroundSize: '300% 300%'

@@ -94,8 +94,7 @@ export function AgentStatusIndicator({
           },
           transition: {
             duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut"
+            repeat: Infinity
           }
         }
       case 'spin':
@@ -105,8 +104,7 @@ export function AgentStatusIndicator({
           },
           transition: {
             duration: 1,
-            repeat: Infinity,
-            ease: "linear"
+            repeat: Infinity
           }
         }
       case 'flow':
@@ -116,8 +114,7 @@ export function AgentStatusIndicator({
           },
           transition: {
             duration: 1.5,
-            repeat: Infinity,
-            ease: "easeInOut"
+            repeat: Infinity
           }
         }
       case 'flash':
@@ -127,8 +124,7 @@ export function AgentStatusIndicator({
           },
           transition: {
             duration: 0.8,
-            repeat: Infinity,
-            ease: "easeInOut"
+            repeat: Infinity
           }
         }
       default:
@@ -186,8 +182,7 @@ export function AgentStatusIndicator({
             }}
             transition={{
               duration: 2,
-              repeat: Infinity,
-              ease: "easeOut"
+              repeat: Infinity
             }}
           />
         )}

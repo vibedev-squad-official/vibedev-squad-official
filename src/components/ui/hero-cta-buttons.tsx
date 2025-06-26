@@ -40,7 +40,9 @@ const NeonButton = React.forwardRef<HTMLButtonElement, NeonButtonProps>(
         )}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        {...props}
+        onClick={props.onClick}
+        disabled={props.disabled}
+        type={props.type}
       >
         {/* Animated background gradient */}
         <div
@@ -65,8 +67,7 @@ const NeonButton = React.forwardRef<HTMLButtonElement, NeonButtonProps>(
           }}
           transition={{
             duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut",
+            repeat: Infinity
           }}
         />
         
