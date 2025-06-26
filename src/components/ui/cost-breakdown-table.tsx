@@ -1,8 +1,9 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import React from "react";
 import { motion } from "framer-motion";
-import { Bot, Check, DollarSign, TrendingUp, Users } from "lucide-react";
+import { DollarSign, TrendingUp, Users, Bot, Check } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface CostBreakdownTableProps {
   className?: string;
