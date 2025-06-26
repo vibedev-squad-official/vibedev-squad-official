@@ -380,73 +380,46 @@ const VibeDevSquadHero: React.FC = () => {
             </Button>
           </motion.div>
 
-          {/* Footer Content in Hero */}
+          {/* Real Impact Metrics Bar - Integrated into Hero */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.4 }}
-            className="pt-16 mt-16 border-t border-white/10"
+            className="pt-16"
           >
-            {/* Logo and Tagline */}
-            <div className="flex flex-col items-center space-y-4 mb-8">
-              <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">V</span>
-                </div>
-                <h3 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                  Vibe DevSquad
-                </h3>
-              </div>
-              <p className="text-white/60 text-center max-w-2xl">
-                Built by a solo entrepreneur using AI orchestration. Scaled for teams of any size.
-              </p>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent mb-4">
+                Real Impact, Measurable Results
+              </h2>
             </div>
-
-            {/* Navigation Links */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8 max-w-4xl mx-auto">
-              <div>
-                <h4 className="text-white font-semibold mb-3 text-sm">Product</h4>
-                <ul className="space-y-2 text-sm text-white/60">
-                  <li><a href="#features" className="hover:text-cyan-400 transition-colors">Features</a></li>
-                  <li><a href="#pricing" className="hover:text-cyan-400 transition-colors">Pricing</a></li>
-                  <li><a href="#testimonials" className="hover:text-cyan-400 transition-colors">Testimonials</a></li>
-                  <li><a href="#roi-calculator" className="hover:text-cyan-400 transition-colors">ROI Calculator</a></li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="text-white font-semibold mb-3 text-sm">Company</h4>
-                <ul className="space-y-2 text-sm text-white/60">
-                  <li><a href="/about" className="hover:text-cyan-400 transition-colors">About Us</a></li>
-                  <li><a href="/blog" className="hover:text-cyan-400 transition-colors">Blog</a></li>
-                  <li><a href="/careers" className="hover:text-cyan-400 transition-colors">Careers</a></li>
-                  <li><a href="/contact" className="hover:text-cyan-400 transition-colors">Contact</a></li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="text-white font-semibold mb-3 text-sm">Resources</h4>
-                <ul className="space-y-2 text-sm text-white/60">
-                  <li><a href="/docs" className="hover:text-cyan-400 transition-colors">Documentation</a></li>
-                  <li><a href="/api" className="hover:text-cyan-400 transition-colors">API Reference</a></li>
-                  <li><a href="/guides" className="hover:text-cyan-400 transition-colors">Guides</a></li>
-                  <li><a href="/support" className="hover:text-cyan-400 transition-colors">Support</a></li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="text-white font-semibold mb-3 text-sm">Legal</h4>
-                <ul className="space-y-2 text-sm text-white/60">
-                  <li><a href="/privacy" className="hover:text-cyan-400 transition-colors">Privacy Policy</a></li>
-                  <li><a href="/terms" className="hover:text-cyan-400 transition-colors">Terms of Service</a></li>
-                  <li><a href="/security" className="hover:text-cyan-400 transition-colors">Security</a></li>
-                  <li><a href="/compliance" className="hover:text-cyan-400 transition-colors">Compliance</a></li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Copyright */}
-            <div className="text-center text-white/40 text-sm">
-              © {new Date().getFullYear()} Vibe DevSquad. All rights reserved.
+            
+            {/* Metrics Grid */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+              {[
+                { value: "300%", label: "Faster Development Cycles", color: "from-cyan-400 to-blue-500" },
+                { value: "85%", label: "Fewer Bugs in Production", color: "from-purple-400 to-pink-500" },
+                { value: "90%", label: "Time Saved on Repetitive Tasks", color: "from-cyan-400 to-teal-500" },
+                { value: "100%", label: "Satisfaction from Development Teams", color: "from-green-400 to-emerald-500" }
+              ].map((metric, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.6 + index * 0.1 }}
+                  className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 text-center group hover:bg-white/10 transition-all duration-300"
+                >
+                  <div className={`text-4xl md:text-5xl font-bold bg-gradient-to-r ${metric.color} bg-clip-text text-transparent mb-2`}>
+                    {metric.value}
+                  </div>
+                  <div className="text-white/80 text-sm md:text-base font-medium">
+                    {metric.label}
+                  </div>
+                  <div className={`w-full h-1 bg-gradient-to-r ${metric.color} rounded-full mt-4 opacity-60 group-hover:opacity-100 transition-opacity duration-300`} />
+                </motion.div>
+              ))}
             </div>
           </motion.div>
+
         </div>
       </div>
     </div>

@@ -10,14 +10,13 @@ import FinalCTAHeader from '@/components/ui/final-cta-header';
 import { GetStartedHeader } from '@/components/ui/get-started-header';
 import VibeDevSquadHeader from '@/components/ui/header';
 import VibeDevSquadHero from '@/components/ui/hero-section';
-import MetricsBar from '@/components/ui/metrics-bar';
 import OriginStorySection from '@/components/ui/origin-story-section';
 import { PricingCards } from '@/components/ui/pricing-cards';
 import { PricingSectionHeader } from '@/components/ui/pricing-header';
 import ProcessCards from '@/components/ui/process-cards';
 import ProcessHeader from '@/components/ui/process-header';
 import { ScaleOptionCards } from '@/components/ui/scale-option-cards';
-
+import { Footer } from '@/components/ui/simple-footer';
 import SocialProofMetrics from '@/components/ui/social-proof-metrics';
 import TargetAudienceCards from '@/components/ui/target-audience-cards';
 import TestimonialCards from '@/components/ui/testimonial-cards';
@@ -75,10 +74,7 @@ export default function Home() {
         <DeploymentChecklist />
       </section>
       
-      {/* Real Impact Metrics Bar */}
-      <section className="relative z-10 py-20 px-4">
-        <MetricsBar />
-      </section>
+
       
       {/* How Vibe Coding Works Section */}
       <section className="relative z-10 py-20 px-4">
@@ -122,6 +118,10 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Footer */}
+      <section className="relative z-10 px-4">
+        <Footer />
+      </section>
 
     </main>
   );
