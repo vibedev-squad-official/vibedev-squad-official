@@ -126,6 +126,18 @@ export function PricingCards({
 }: PricingCardsProps) {
   const [isYearly, setIsYearly] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [isClient, setIsClient] = useState(false);
+  const [particles, setParticles] = useState<Array<{left: number, top: number}>>([]);
+
+  useEffect(() => {
+    setIsClient(true);
+    // Generate particles only on client side
+    const newParticles = Array.from({ length: 15 }, () => ({
+      left: Math.random() * 100,
+      top: Math.random() * 100
+    }));
+    setParticles(newParticles);
+  }, []);
 
   const handlePlanSelect = (planName: string) => {
     onPlanSelect?.(planName, isYearly);
@@ -234,13 +246,13 @@ export function PricingCards({
         />
 
         {/* Particle Effects */}
-        {[...Array(15)].map((_, i) => (
+        {isClient && particles.map((particle, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-foreground/30 rounded-full"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: `${particle.left}%`,
+              top: `${particle.top}%`,
             }}
             animate={{
               y: [0, -50, 0],
@@ -248,10 +260,10 @@ export function PricingCards({
               scale: [1, 1.5, 1],
             }}
             transition={{
-              duration: 3 + Math.random() * 3,
+              duration: 3 + (i * 0.2), // Use index instead of Math.random()
               repeat: Infinity,
               ease: "easeInOut",
-              delay: Math.random() * 2,
+              delay: i * 0.1, // Use index instead of Math.random()
             }}
           />
         ))}
