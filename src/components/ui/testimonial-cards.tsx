@@ -1,11 +1,10 @@
 "use client";
 
 import { Transition } from "@headlessui/react";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 interface Testimonial {
-  img: string;
+  initials: string;
   quote: string;
   name: string;
   role: string;
@@ -13,19 +12,19 @@ interface Testimonial {
 
 const testimonials: Testimonial[] = [
   {
-    img: "/api/placeholder/56/56", // Placeholder for Sarah Chen
+    initials: "SC",
     quote: "Vibe DevSquad transformed our development process. What used to take our team of 8 developers 3 months now takes 2 weeks with AI orchestration. The cost savings alone paid for itself in the first month.",
     name: "Sarah Chen",
     role: "CTO, TechFlow Solutions"
   },
   {
-    img: "/api/placeholder/56/56", // Placeholder for Marcus Rodriguez
+    initials: "MR",
     quote: "As a solo entrepreneur, I couldn't afford a full development team. Vibe DevSquad gave me the power of an entire engineering department for less than what I was paying for basic hosting.",
     name: "Marcus Rodriguez", 
     role: "Founder, InnovateLab"
   },
   {
-    img: "/api/placeholder/56/56", // Placeholder for Dr. Emily Watson
+    initials: "EW",
     quote: "The AI agents don't just write code - they understand our business logic and make intelligent decisions. It's like having senior developers who never sleep and never make mistakes.",
     name: "Dr. Emily Watson",
     role: "VP Engineering, DataCore Systems"
@@ -78,13 +77,9 @@ export default function TestimonialCards() {
                 beforeEnter={() => heightFix()}
               >
                 <div className="relative left-1/2 top-11 -translate-x-1/2 rounded-full ring-2 ring-blue-400/50 shadow-lg shadow-blue-500/25">
-                  <Image
-                    className="rounded-full"
-                    src={testimonial.img}
-                    width={56}
-                    height={56}
-                    alt={testimonial.name}
-                  />
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
+                    {testimonial.initials}
+                  </div>
                 </div>
               </Transition>
             ))}

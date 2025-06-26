@@ -17,6 +17,7 @@ import { PricingSectionHeader } from '@/components/ui/pricing-header';
 import ProcessCards from '@/components/ui/process-cards';
 import ProcessHeader from '@/components/ui/process-header';
 import { ScaleOptionCards } from '@/components/ui/scale-option-cards';
+import { Footer } from '@/components/ui/simple-footer';
 import SocialProofMetrics from '@/components/ui/social-proof-metrics';
 import TargetAudienceCards from '@/components/ui/target-audience-cards';
 import TestimonialCards from '@/components/ui/testimonial-cards';
@@ -119,6 +120,11 @@ export default function Home() {
           <FinalCTAButtons />
           <TrustIndicators />
         </div>
+      </section>
+
+      {/* Footer */}
+      <section className="relative z-10 px-4">
+        <Footer />
       </section>
     </main>
   );
