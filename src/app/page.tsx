@@ -16,6 +16,8 @@ import ProcessHeader from '@/components/ui/process-header';
 import { ScaleOptionCards } from '@/components/ui/scale-option-cards';
 import SocialProofMetrics from '@/components/ui/social-proof-metrics';
 import TargetAudienceCards from '@/components/ui/target-audience-cards';
+import TestimonialCards from '@/components/ui/testimonial-cards';
+import TestimonialsHeader from '@/components/ui/testimonials-header';
 import { analytics, performance } from '@/lib/analytics';
 import { useEffect } from 'react';
 
@@ -91,6 +93,14 @@ export default function Home() {
       
       {/* Interactive Comparison Section */}
       <ComparisonSection />
+      
+      {/* Testimonials Section */}
+      <section className="relative z-10 py-20 px-4">
+        <div className="max-w-7xl mx-auto">
+          <TestimonialsHeader />
+          <TestimonialCards />
+        </div>
+      </section>
       
       {/* Social Proof Metrics Section */}
       <section className="relative z-10 py-20 px-4">
