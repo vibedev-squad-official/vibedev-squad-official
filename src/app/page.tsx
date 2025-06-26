@@ -61,6 +61,13 @@ export default function Home() {
         <FeaturesSection />
       </section>
       
+      {/* Get Started Section */}
+      <section className="relative z-10">
+        <GetStartedHeader />
+        <ScaleOptionCards />
+        <DeploymentChecklist />
+      </section>
+      
       {/* Real Impact Metrics Bar */}
       <section className="relative z-10 py-20 px-4">
         <MetricsBar />
@@ -84,13 +91,6 @@ export default function Home() {
       
       {/* Interactive Comparison Section */}
       <ComparisonSection />
-      
-      {/* Get Started Section */}
-      <section className="relative z-10">
-        <GetStartedHeader />
-        <ScaleOptionCards />
-        <DeploymentChecklist />
-      </section>
       
       {/* Social Proof Metrics Section */}
       <section className="relative z-10 py-20 px-4">
