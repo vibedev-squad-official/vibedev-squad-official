@@ -7,7 +7,7 @@ import { AIToolsComparisonTable } from "./ai-tools-comparison-table";
 import { ComparisonDropdown } from "./comparison-dropdown";
 import { CostBreakdownTable } from "./cost-breakdown-table";
 import { CostComparisonCards } from "./cost-comparison-cards";
-import { ROICalculator } from "./roi-calculator";
+import { EnhancedROICalculator } from "./enhanced-roi-calculator";
 import { EnhancedTabNavigation } from "./enhanced-tab-navigation";
 
 export type TabType = "ai-tools" | "dev-costs" | "roi-calculator";
@@ -68,7 +68,13 @@ export function ComparisonSection({ className }: ComparisonSectionProps) {
 
             {activeTab === "roi-calculator" && (
               <div className="space-y-8">
-                <ROICalculator />
+                <EnhancedROICalculator 
+                  showSocialProof={true}
+                  onLeadCapture={(email, results) => {
+                    console.log('Lead captured:', { email, results });
+                    // Handle lead capture logic here
+                  }}
+                />
               </div>
             )}
           </div>
