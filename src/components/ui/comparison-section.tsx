@@ -8,7 +8,9 @@ import { ComparisonDropdown } from "./comparison-dropdown";
 import { CostBreakdownTable } from "./cost-breakdown-table";
 import { CostComparisonCards } from "./cost-comparison-cards";
 import { ROICalculator } from "./roi-calculator";
-import { TabNavigation, TabType } from "./tab-navigation";
+import { EnhancedTabNavigation } from "./enhanced-tab-navigation";
+
+export type TabType = "ai-tools" | "dev-costs" | "roi-calculator";
 
 interface ComparisonSectionProps {
   className?: string;
@@ -17,13 +19,18 @@ interface ComparisonSectionProps {
 export function ComparisonSection({ className }: ComparisonSectionProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [activeTab, setActiveTab] = useState<TabType>("ai-tools");
+  const [selectedLocation, setSelectedLocation] = useState("remote");
 
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
   };
 
-  const handleTabChange = (tab: TabType) => {
-    setActiveTab(tab);
+  const handleTabChange = (tab: string) => {
+    setActiveTab(tab as TabType);
+  };
+
+  const handleLocationChange = (location: string) => {
+    setSelectedLocation(location);
   };
 
   return (
@@ -33,10 +40,13 @@ export function ComparisonSection({ className }: ComparisonSectionProps) {
           isExpanded={isExpanded}
           onToggle={handleToggle}
         >
-          {/* Tab Navigation */}
-          <TabNavigation
+          {/* Enhanced Tab Navigation with Keyboard Support */}
+          <EnhancedTabNavigation
             activeTab={activeTab}
             onTabChange={handleTabChange}
+            showLocationFilter={activeTab === "dev-costs"}
+            selectedLocation={selectedLocation}
+            onLocationChange={handleLocationChange}
             className="mb-8"
           />
 
@@ -51,8 +61,8 @@ export function ComparisonSection({ className }: ComparisonSectionProps) {
 
             {activeTab === "dev-costs" && (
               <div className="space-y-12">
-                <CostBreakdownTable />
-                <CostComparisonCards />
+                <CostBreakdownTable selectedLocation={selectedLocation} />
+                <CostComparisonCards selectedLocation={selectedLocation} />
               </div>
             )}
 
