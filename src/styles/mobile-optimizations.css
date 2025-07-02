@@ -1,0 +1,289 @@
+/* Mobile Touch Target Optimization */
+/* Ensuring 44px minimum touch targets as per Apple HIG and Material Design */
+
+/* Base touch target class */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+  position: relative;
+}
+
+/* Touch target wrapper for small elements */
+.touch-target-wrapper {
+  position: relative;
+  padding: 10px;
+  margin: -10px;
+}
+
+/* Ensure interactive elements have proper touch areas */
+button.touch-target,
+a.touch-target,
+[role="button"].touch-target {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile-specific button enhancements */
+@media (max-width: 768px) {
+  /* Increase all button heights on mobile */
+  .btn,
+  button,
+  [role="button"] {
+    min-height: 44px;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  /* Increase slider touch areas */
+  input[type="range"]::-webkit-slider-thumb {
+    width: 44px;
+    height: 44px;
+    margin-top: -18px;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* Larger checkbox and radio buttons */
+  input[type="checkbox"],
+  input[type="radio"] {
+    width: 24px;
+    height: 24px;
+    margin: 10px;
+  }
+
+  /* Form input enhancements */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  textarea,
+  select {
+    min-height: 44px;
+    padding: 0.75rem 1rem;
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+
+  /* Tab navigation optimization */
+  [role="tab"] {
+    min-height: 48px;
+    padding: 12px 16px;
+  }
+
+  /* Card touch areas */
+  .card-interactive {
+    padding: 16px;
+    margin: -8px;
+  }
+
+  /* Navigation items */
+  nav a,
+  nav button {
+    min-height: 44px;
+    padding: 12px 16px;
+  }
+
+  /* Modal close buttons */
+  [aria-label*="close"],
+  [aria-label*="Close"] {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+/* Progressive Disclosure for Mobile */
+@media (max-width: 640px) {
+  /* Hide secondary information by default */
+  .mobile-secondary {
+    display: none;
+  }
+
+  /* Show on interaction */
+  .mobile-expanded .mobile-secondary {
+    display: block;
+  }
+
+  /* Vertical stacking for comparison tables */
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Stack horizontal elements vertically */
+  .flex-mobile-column {
+    flex-direction: column;
+  }
+
+  /* Full width CTAs on mobile */
+  .cta-mobile-full {
+    width: 100%;
+  }
+}
+
+/* Swipe Gesture Support */
+.swipeable {
+  touch-action: pan-y pinch-zoom;
+}
+
+.swipeable-x {
+  touch-action: pan-x pinch-zoom;
+}
+
+/* Haptic Feedback Visual Indicators */
+.haptic-light {
+  transition: transform 0.1s ease-out;
+}
+
+.haptic-light:active {
+  transform: scale(0.98);
+}
+
+.haptic-medium {
+  transition: transform 0.15s ease-out;
+}
+
+.haptic-medium:active {
+  transform: scale(0.95);
+}
+
+/* Improved Focus States for Mobile */
+@media (hover: none) and (pointer: coarse) {
+  /* Remove hover states on touch devices */
+  .hover\:bg-accent:hover {
+    background-color: transparent;
+  }
+
+  /* Enhance focus states */
+  :focus-visible {
+    outline: 3px solid rgb(34, 211, 238);
+    outline-offset: 2px;
+  }
+}
+
+/* Mobile Landscape Optimizations */
+@media (max-height: 500px) and (orientation: landscape) {
+  /* Reduce vertical spacing */
+  .space-y-6 {
+    gap: 1rem;
+  }
+
+  /* Smaller headers */
+  h1 {
+    font-size: 1.875rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  /* Compact navigation */
+  header {
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* iOS Safe Area Support */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .ios-safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .ios-safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  /* Fixed bottom elements */
+  .fixed-bottom-safe {
+    bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Smooth Scrolling for Mobile */
+@media (max-width: 768px) {
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Momentum scrolling for containers */
+  .scroll-container {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Loading States for Touch Interactions */
+.touch-loading {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.touch-loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: touch-spin 0.8s linear infinite;
+}
+
+@keyframes touch-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Accessibility Enhancements for Mobile */
+@media (max-width: 768px) {
+  /* Larger text for better readability */
+  body {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .glassmorphism-card {
+      background: rgba(0, 0, 0, 0.9);
+      border: 2px solid rgba(255, 255, 255, 0.8);
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Touch-friendly Spacing */
+@media (max-width: 768px) {
+  /* Increase spacing between interactive elements */
+  .space-y-touch > * + * {
+    margin-top: 1rem;
+  }
+
+  /* Padding for scrollable areas */
+  .scroll-padding-touch {
+    padding: 1rem;
+    padding-bottom: 2rem;
+  }
+
+  /* Bottom padding for fixed elements */
+  .bottom-safe {
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+  }
+}

@@ -273,6 +273,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, cla
       )}
       whileHover={{ scale: 1.02, y: -5 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      data-testid="feature-card"
     >
       <div className="relative z-10">
         <div className="mb-4 inline-flex p-3 rounded-xl bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors duration-300">
@@ -335,7 +336,10 @@ const FeaturesSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative py-20 px-4 overflow-hidden">
+    <section 
+      className="relative py-20 px-4 overflow-hidden"
+      data-testid="features-section"
+    >
       {/* Pure transparent - let AIBackground show through */}
 
       {/* Animated background elements */}

@@ -1,34 +1,24 @@
 "use client";
 
-import React, { useState, useRef, useCallback } from 'react';
-import { motion, AnimatePresence, useInView } from 'framer-motion';
-import { useSpring, animated } from 'react-spring';
-import { 
-  Calculator,
-  Users,
-  DollarSign,
-  TrendingUp,
-  Mail,
-  Building,
-  User,
-  Send,
-  ArrowRight,
-  CheckCircle,
-  X,
-  Sparkles,
-  Shield,
-  Clock,
-  Globe,
-  Zap
-} from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { cn } from '@/lib/utils';
+import { AnimatePresence, motion } from 'framer-motion';
+import {
+    Building,
+    CheckCircle,
+    Mail,
+    Send,
+    Sparkles,
+    TrendingUp,
+    User,
+    Users
+} from 'lucide-react';
+import React, { useCallback, useState } from 'react';
+import { animated, useSpring } from 'react-spring';
 
 interface CalculationResults {
   traditionalCost: number;
@@ -397,7 +387,10 @@ export function EnhancedROICalculator({
   };
 
   return (
-    <div className={cn("w-full max-w-6xl mx-auto", className)}>
+    <div 
+      className={cn("w-full max-w-6xl mx-auto", className)}
+      data-testid="roi-calculator"
+    >
       {/* Header */}
       <div className="text-center mb-12">
         <motion.h2

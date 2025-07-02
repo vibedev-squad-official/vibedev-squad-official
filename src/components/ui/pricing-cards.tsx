@@ -196,7 +196,10 @@ export function PricingCards({
   };
 
   return (
-    <section className="relative py-20 text-foreground overflow-hidden">
+    <section 
+      className="relative py-20 text-foreground overflow-hidden"
+      data-testid="pricing-section"
+    >
       {/* Animated Background */}
       <div className="absolute inset-0">
         <motion.div 
@@ -337,6 +340,7 @@ export function PricingCards({
                 style={{
                   transformStyle: 'preserve-3d',
                 }}
+                data-testid="pricing-card"
               >
                 {/* Neon Border Effect */}
                 <motion.div

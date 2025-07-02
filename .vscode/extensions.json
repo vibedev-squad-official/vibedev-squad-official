@@ -1,5 +1,6 @@
 {
   "recommendations": [
+    "21st.21st-extension",
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
     "bradlc.vscode-tailwindcss",

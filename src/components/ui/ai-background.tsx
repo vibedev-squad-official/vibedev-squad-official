@@ -447,16 +447,75 @@ const AnimatedGradient: React.FC<AnimatedGradientProps> = ({
   );
 };
 
+interface GradientOption {
+  id: string;
+  name: string;
+  colors: string[];
+  description: string;
+  baseGradient: string;
+}
+
+const purpleGradientOptions: GradientOption[] = [
+  {
+    id: 'deep-purple-classic',
+    name: 'Deep Purple Classic',
+    colors: ['#581c87', '#3b0764', '#1e1b4b', '#312e81', '#4c1d95'],
+    description: 'Classic deep purple gradient',
+    baseGradient: 'from-purple-800 via-purple-900 to-slate-900'
+  },
+  {
+    id: 'royal-purple',
+    name: 'Royal Purple',
+    colors: ['#581c87', '#7c3aed', '#3b0764', '#6366f1', '#312e81'],
+    description: 'Rich royal purple tones',
+    baseGradient: 'from-purple-800 via-violet-800 to-purple-900'
+  },
+  {
+    id: 'mystic-purple',
+    name: 'Mystic Purple',
+    colors: ['#581c87', '#6366f1', '#3b0764', '#4338ca', '#312e81'],
+    description: 'Mystical purple with indigo',
+    baseGradient: 'from-purple-800 via-indigo-800 to-purple-900'
+  },
+  {
+    id: 'cosmic-purple',
+    name: 'Cosmic Purple',
+    colors: ['#581c87', '#8b5cf6', '#7c3aed', '#3b0764', '#1e1b4b'],
+    description: 'Cosmic purple nebula effect',
+    baseGradient: 'from-purple-800 via-violet-700 to-purple-900'
+  },
+  {
+    id: 'deep-space',
+    name: 'Deep Space Purple',
+    colors: ['#581c87', '#4c1d95', '#3730a3', '#1e1b4b', '#0f172a'],
+    description: 'Deep space purple gradient',
+    baseGradient: 'from-purple-800 via-purple-900 to-slate-950'
+  },
+  {
+    id: 'vibrant-purple',
+    name: 'Vibrant Purple',
+    colors: ['#581c87', '#a855f7', '#7c3aed', '#4c1d95', '#3b0764'],
+    description: 'Vibrant and energetic purple',
+    baseGradient: 'from-purple-800 via-purple-600 to-purple-900'
+  }
+];
+
 interface AIBackgroundProps {
   children?: React.ReactNode;
   className?: string;
+  gradientOption?: string;
+  showGradientSelector?: boolean;
 }
 
 const AIBackground: React.FC<AIBackgroundProps> = ({
-
+  children,
   className = "",
+  gradientOption = 'deep-purple-classic',
+  showGradientSelector = false,
 }) => {
   const [isDark, setIsDark] = useState(false);
+  const [selectedGradient, setSelectedGradient] = useState(gradientOption);
+  const [selectorOpen, setSelectorOpen] = useState(false);
   const controls = useAnimation();
 
   useEffect(() => {
@@ -479,18 +538,19 @@ const AIBackground: React.FC<AIBackgroundProps> = ({
     return () => observer.disconnect();
   }, [controls]);
 
-  const gradientColors = isDark
-    ? ["#1e1b4b", "#312e81", "#4c1d95", "#6b21a8", "#7c3aed"]
-    : ["#1e1b4b", "#312e81", "#4c1d95", "#6b21a8", "#7c3aed"];
+  const currentGradientOption = purpleGradientOptions.find(
+    option => option.id === selectedGradient
+  ) || purpleGradientOptions[0];
 
-  const particleColor = "#ffffff";
+  const gradientColors = currentGradientOption.colors;
+  const particleColor = "#a855f7"; // Purple particle color
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={controls}
       className={cn(
-        "fixed inset-0 w-full min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 z-0",
+        `fixed inset-0 w-full min-h-screen overflow-hidden bg-gradient-to-br ${currentGradientOption.baseGradient} z-0`,
         className
       )}
     >
@@ -509,7 +569,61 @@ const AIBackground: React.FC<AIBackgroundProps> = ({
         staticity={40}
       />
 
+      {/* Gradient Selector (if enabled) */}
+      {showGradientSelector && (
+        <div className="fixed top-4 right-4 z-50">
+          <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-lg p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-3 h-3 rounded-full bg-purple-400"></div>
+              <span className="text-white text-sm font-medium">Background</span>
+              <button
+                onClick={() => setSelectorOpen(!selectorOpen)}
+                className="ml-auto text-white/60 hover:text-white transition-colors"
+              >
+                {selectorOpen ? '−' : '+'}
+              </button>
+            </div>
+            
+            {selectorOpen && (
+              <div className="space-y-2 min-w-[200px] max-h-80 overflow-y-auto">
+                {purpleGradientOptions.map((option) => (
+                  <button
+                    key={option.id}
+                    onClick={() => setSelectedGradient(option.id)}
+                    className={`w-full text-left p-2 rounded text-sm transition-all ${
+                      selectedGradient === option.id
+                        ? 'bg-white/20 text-white'
+                        : 'text-white/60 hover:text-white hover:bg-white/10'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <div
+                        className="w-4 h-4 rounded border border-white/20"
+                        style={{
+                          background: `linear-gradient(45deg, ${option.colors.slice(0, 2).join(', ')})`
+                        }}
+                      />
+                      <div>
+                        <div className="font-medium">{option.name}</div>
+                        <div className="text-xs text-white/40">{option.description}</div>
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-background/10" />
+      
+      {/* Content */}
+      {children && (
+        <div className="relative z-10">
+          {children}
+        </div>
+      )}
     </motion.div>
   );
 };

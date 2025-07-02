@@ -1,5 +1,6 @@
 'use client';
 
+import { ABTestHero } from '@/components/ui/ab-test-hero';
 import ActivityFeed from '@/components/ui/activity-feed';
 import AIBackground from '@/components/ui/ai-background';
 import { ComparisonSection } from '@/components/ui/comparison-section';
@@ -9,13 +10,13 @@ import FinalCTAButtons from '@/components/ui/final-cta-buttons';
 import FinalCTAHeader from '@/components/ui/final-cta-header';
 import { GetStartedHeader } from '@/components/ui/get-started-header';
 import VibeDevSquadHeader from '@/components/ui/header';
-import VibeDevSquadHero from '@/components/ui/hero-section';
 import OriginStorySection from '@/components/ui/origin-story-section';
 import { PricingCards } from '@/components/ui/pricing-cards';
 import { PricingSectionHeader } from '@/components/ui/pricing-header';
 import ProcessCards from '@/components/ui/process-cards';
 import ProcessHeader from '@/components/ui/process-header';
 import { ScaleOptionCards } from '@/components/ui/scale-option-cards';
+import SEOStructuredData from '@/components/ui/seo-structured-data';
 import { Footer } from '@/components/ui/simple-footer';
 import SocialProofMetrics from '@/components/ui/social-proof-metrics';
 import TargetAudienceCards from '@/components/ui/target-audience-cards';
@@ -63,8 +64,14 @@ export default function Home() {
         {/* This will be populated by interactive elements */}
       </div>
       
-      {/* Unified AI Background */}
-      <AIBackground />
+      {/* SEO Structured Data */}
+      <SEOStructuredData />
+      
+      {/* Unified AI Background with Purple Gradient Selector */}
+      <AIBackground 
+        showGradientSelector={false}
+        gradientOption="deep-purple-classic"
+      />
       
       {/* Header */}
       <div id="navigation">
@@ -73,9 +80,9 @@ export default function Home() {
       
       {/* Main Content */}
       <div id="main-content">
-        {/* Hero Section */}
+        {/* A/B Test Hero Section */}
         <section aria-labelledby="hero-heading">
-          <VibeDevSquadHero />
+          <ABTestHero />
         </section>
         
         {/* Origin Story Section */}
@@ -92,7 +99,7 @@ export default function Home() {
         </section>
         
         {/* Features Section (Problem/Solution + Feature Grid) */}
-        <section className="relative z-10 py-20 px-4" aria-labelledby="features-heading">
+        <section id="features" className="relative z-10 py-20 px-4" aria-labelledby="features-heading">
           <h2 id="features-heading" className="sr-only">
             Features and Solutions
           </h2>
@@ -110,7 +117,7 @@ export default function Home() {
         </section>
         
         {/* How Vibe Coding Works Section */}
-        <section className="relative z-10 py-20 px-4" aria-labelledby="how-it-works-heading">
+        <section id="how-it-works" className="relative z-10 py-20 px-4" aria-labelledby="how-it-works-heading">
           <div className="max-w-7xl mx-auto">
             <h2 id="how-it-works-heading" className="sr-only">
               How Vibe Coding Works
@@ -121,7 +128,7 @@ export default function Home() {
         </section>
         
         {/* Pricing Section */}
-        <section className="relative z-10 py-20 px-4" aria-labelledby="pricing-heading">
+        <section id="pricing" className="relative z-10 py-20 px-4" aria-labelledby="pricing-heading">
           <div className="max-w-7xl mx-auto">
             <h2 id="pricing-heading" className="sr-only">
               Pricing Plans
@@ -140,7 +147,7 @@ export default function Home() {
         </section>
         
         {/* Testimonials Section */}
-        <section className="relative z-10 py-20 px-4" aria-labelledby="testimonials-heading">
+        <section id="testimonials" className="relative z-10 py-20 px-4" aria-labelledby="testimonials-heading">
           <div className="max-w-7xl mx-auto">
             <h2 id="testimonials-heading" className="sr-only">
               Customer Testimonials

@@ -1,5 +1,16 @@
 import { track } from '@vercel/analytics';
 
+// Type declarations for gtag
+declare global {
+  interface Window {
+    gtag?: (
+      command: 'event' | 'config' | 'set',
+      targetId: string,
+      config?: Record<string, any>
+    ) => void;
+  }
+}
+
 // Analytics utility functions for Vibe DevSquad landing page
 export const analytics = {
   // Page view tracking
@@ -65,6 +76,11 @@ export const analytics = {
   // Conversion funnel tracking
   conversionStep: (step: string, funnel: string) => {
     track('conversion_step', { step, funnel });
+  },
+
+  // Custom event tracking
+  customEvent: (event: string, metadata?: Record<string, any>) => {
+    track('custom_event', { event, ...metadata });
   }
 };
 
@@ -106,5 +122,100 @@ export const conversion = {
   // Track contact form submissions
   contactSubmission: (type: string, source: string) => {
     track('contact_submission', { type, source });
+  }
+};
+
+// A/B Testing Conversion Tracking
+export const abTesting = {
+  // Track A/B test conversion events
+  trackConversion: (testId: string, variantId: string, conversionType: string, metadata?: Record<string, any>) => {
+    try {
+      // Track in Google Analytics if available
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'ab_test_conversion', {
+          test_id: testId,
+          variant_id: variantId,
+          conversion_type: conversionType,
+          ...metadata
+        });
+      }
+
+      // Track in custom analytics
+      const event = {
+        type: 'ab_test_conversion',
+        testId,
+        variantId,
+        conversionType,
+        timestamp: new Date().toISOString(),
+        metadata
+      };
+
+      // Send to analytics endpoint
+      if (typeof window !== 'undefined') {
+        fetch('/api/analytics/ab-test', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(event)
+        }).catch(err => console.warn('Analytics tracking failed:', err));
+      }
+
+      console.log('A/B Test Conversion Tracked:', event);
+    } catch (error) {
+      console.warn('Failed to track A/B test conversion:', error);
+    }
+  },
+
+  // Track A/B test assignment
+  trackAssignment: (testId: string, variantId: string, metadata?: Record<string, any>) => {
+    try {
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'ab_test_assignment', {
+          test_id: testId,
+          variant_id: variantId,
+          ...metadata
+        });
+      }
+
+      const event = {
+        type: 'ab_test_assignment',
+        testId,
+        variantId,
+        timestamp: new Date().toISOString(),
+        metadata
+      };
+
+      console.log('A/B Test Assignment Tracked:', event);
+    } catch (error) {
+      console.warn('Failed to track A/B test assignment:', error);
+    }
+  },
+
+  // Track key conversion goals
+  trackTrialStart: (source: string, testId?: string, variantId?: string) => {
+    analytics.customEvent('trial_start', { source });
+    if (testId && variantId) {
+      abTesting.trackConversion(testId, variantId, 'trial_start', { source });
+    }
+  },
+
+  trackDemoRequest: (source: string, testId?: string, variantId?: string) => {
+    analytics.customEvent('demo_request', { source });
+    if (testId && variantId) {
+      abTesting.trackConversion(testId, variantId, 'demo_request', { source });
+    }
+  },
+
+  trackEmailSignup: (source: string, testId?: string, variantId?: string) => {
+    analytics.customEvent('email_signup', { source });
+    if (testId && variantId) {
+      abTesting.trackConversion(testId, variantId, 'email_signup', { source });
+    }
+  },
+
+  trackROICalculatorUse: (savings: number, testId?: string, variantId?: string) => {
+    analytics.customEvent('roi_calculator_use', { savings });
+    if (testId && variantId) {
+      abTesting.trackConversion(testId, variantId, 'roi_calculator_use', { savings });
+    }
   }
 }; 
