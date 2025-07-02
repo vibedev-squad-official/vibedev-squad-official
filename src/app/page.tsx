@@ -10,6 +10,7 @@ import FinalCTAButtons from '@/components/ui/final-cta-buttons';
 import FinalCTAHeader from '@/components/ui/final-cta-header';
 import { GetStartedHeader } from '@/components/ui/get-started-header';
 import VibeDevSquadHeader from '@/components/ui/header';
+import MetricsBar from '@/components/ui/metrics-bar';
 import OriginStorySection from '@/components/ui/origin-story-section';
 import { PricingCards } from '@/components/ui/pricing-cards';
 import { PricingSectionHeader } from '@/components/ui/pricing-header';
@@ -83,6 +84,14 @@ export default function Home() {
         {/* A/B Test Hero Section */}
         <section aria-labelledby="hero-heading">
           <ABTestHero />
+        </section>
+        
+        {/* Real Impact Metrics Bar */}
+        <section className="relative z-10" aria-labelledby="metrics-bar-heading">
+          <h2 id="metrics-bar-heading" className="sr-only">
+            Real Impact Metrics and Results
+          </h2>
+          <MetricsBar />
         </section>
         
         {/* Origin Story Section */}
